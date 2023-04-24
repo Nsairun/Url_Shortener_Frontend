@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import './App.css';
 import React from 'react';
-import Registeration from './Pages/Registration/Registeration';
+import Registeration from './Pages/Registration/Registration';
 
 function App() {
   return (
