@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Lora&family=Roboto&display=swap');
+@import url('https://fonts.cdnfonts.com/css/acumin-pro');
+@import url('https://db.onlinewebfonts.com/c/796e2db2256ddfab47394211f41ac410?family=Acumin+Pro');
+
 .App {
   text-align: center;
   margin: 0;
   padding: 0;
+  background-image: radial-gradient(circle, #04082db3, #04082db3, #04082db3),
+    url('./assets/images/1024w/Artboard\ 1.png');
+  height: 100vh;
 }
