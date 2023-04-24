@@ -53,17 +53,17 @@ function Registration({ placeholder, name }) {
         </JoinHolder>
         <Ptag>Don't think about it, do it!</Ptag>
         <Label>UserName</Label>
-        <InputField placeholder="username" name="username" />
+        <InputField placeholder="Enter Username" name="username" />
         <Label>Email</Label>
-        <InputField placeholder="emailAdress" name="email" />
+        <InputField placeholder="Enter EmailAdress" name="email" />
         <PassConfirm>
           <PassHolder>
             <Label>Password</Label>
-            <InputField placeholder="password" name="password" />
+            <InputField placeholder="Enter Password" name="password" />
           </PassHolder>
           <PassHolder>
             <Label>Password Confirm</Label>
-            <InputField placeholder="confirm password" name="confirmpassword" />
+            <InputField placeholder="Confirm Password" name="confirmpassword" />
           </PassHolder>
         </PassConfirm>
         <FormBottom>
