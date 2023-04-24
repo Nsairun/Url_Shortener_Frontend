@@ -50,5 +50,6 @@ export const FooterL = styled.div`
 
 export const FooterR = styled.div`
   display: flex;
+  gap: 10px;
   align-items: center;
 `;

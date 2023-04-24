@@ -1,5 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
+import React from 'react';
+import { SocialF, SocialT, ShortLogo, ShortUrl } from '../Atoms/Atoms';
+import { FooterL, FooterR, LogoHolder } from '../Molecules/Molecules';
 
 export const NavBar = styled.div`
   display: flex;
@@ -22,9 +25,29 @@ export const Form = styled.form`
 `;
 
 export const Footer = styled.div`
-  dislpay: flex;
-  align-items: center;
+  display: flex;
+  padding: 12px 80px;
   justify-content: space-between;
+  align-items: center;
   bottom: 0;
   background-color: #1b1c2d70;
 `;
+
+function OrgF() {
+  return (
+    <Footer>
+      <FooterL>
+        <LogoHolder>
+          <ShortLogo />
+          <ShortUrl>UrlShortener</ShortUrl>
+        </LogoHolder>
+      </FooterL>
+      <FooterR>
+        <SocialF />
+        <SocialT />
+      </FooterR>
+    </Footer>
+  );
+}
+
+export default OrgF;

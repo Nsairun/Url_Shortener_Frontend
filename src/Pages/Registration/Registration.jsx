@@ -13,8 +13,6 @@ import {
   Label,
   OnclickBtn,
   Ptag,
-  SocialF,
-  SocialT,
 } from '../../components/Atoms/Atoms';
 import {
   LogoHolder,
@@ -24,11 +22,9 @@ import {
   PassConfirm,
   FormBottom,
   FormBottomR,
-  FooterL,
-  FooterR,
 } from '../../components/Molecules/Molecules';
 
-import { NavBar, Form, Footer } from '../../components/Organisms/Organisms';
+import OrgF, { NavBar, Form } from '../../components/Organisms/Organisms';
 
 const RegMain = styled.div`
   display: flex;
@@ -86,18 +82,7 @@ function Registration({ placeholder, name, value }) {
           </FormBottomR>
         </FormBottom>
       </Form>
-      <Footer>
-        <FooterL>
-          <LogoHolder>
-            <ShortLogo />
-            <ShortUrl>UrlShortener</ShortUrl>
-          </LogoHolder>
-        </FooterL>
-        <FooterR>
-          <SocialF />
-          <SocialT />
-        </FooterR>
-      </Footer>
+      <OrgF />
     </RegMain>
   );
 }
