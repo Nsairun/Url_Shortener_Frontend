@@ -33,7 +33,7 @@ const RegMain = styled.div`
   width: 100vw;
 `;
 
-function Registration({ placeholder, name, value }) {
+function Registration({ placeholder, name }) {
   return (
     <RegMain>
       <NavBar>
@@ -53,25 +53,17 @@ function Registration({ placeholder, name, value }) {
         </JoinHolder>
         <Ptag>Don't think about it, do it!</Ptag>
         <Label>UserName</Label>
-        <InputField placeholder="username" name="username" value="username" />
+        <InputField placeholder="username" name="username" />
         <Label>Email</Label>
-        <InputField placeholder="emailAdress" name="email" value="email" />
+        <InputField placeholder="emailAdress" name="email" />
         <PassConfirm>
           <PassHolder>
             <Label>Password</Label>
-            <InputField
-              placeholder="password"
-              name="password"
-              value="password"
-            />
+            <InputField placeholder="password" name="password" />
           </PassHolder>
           <PassHolder>
             <Label>Password Confirm</Label>
-            <InputField
-              placeholder="confirm password"
-              name="confirmpassword"
-              value="confirmpassword"
-            />
+            <InputField placeholder="confirm password" name="confirmpassword" />
           </PassHolder>
         </PassConfirm>
         <FormBottom>

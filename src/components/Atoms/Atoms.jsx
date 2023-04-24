@@ -70,7 +70,6 @@ export const Button = styled.button`
     props.$primary &&
     css`
       background: transparent;
-      color: white;
       border: 2px solid #fff;
       padding: 0.15em 0.5em;
     `}
@@ -103,7 +102,6 @@ export const Ptag = styled.p`
     props.$primary &&
     css`
       color: #b6b6b6;
-      font-size: 16px;
     `}
 `;
 
