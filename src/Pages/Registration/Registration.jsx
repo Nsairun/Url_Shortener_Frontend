@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   Join,
@@ -34,6 +35,7 @@ const RegMain = styled.div`
 `;
 
 function Registration({ placeholder, name }) {
+
   return (
     <RegMain>
       <NavBar>
@@ -42,8 +44,10 @@ function Registration({ placeholder, name }) {
           <ShortUrl>UrlShortener</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
-          <Button>Login</Button>
-          <Button $primary>Sign Up</Button>
+          <Button onClick={toLogin}>Login</Button>
+          <Button onClick={toSignUp} $primary>
+            Sign Up
+          </Button>
         </ButtonHolder>
       </NavBar>
       <Form>
@@ -70,7 +74,9 @@ function Registration({ placeholder, name }) {
           <OnclickBtn>Create Account</OnclickBtn>
           <FormBottomR>
             <Ptag $primary>Already have an account </Ptag>
-            <Button $secondry>Login</Button>
+            <Button onClick={toLogin} $secondry>
+              Login
+            </Button>
           </FormBottomR>
         </FormBottom>
       </Form>

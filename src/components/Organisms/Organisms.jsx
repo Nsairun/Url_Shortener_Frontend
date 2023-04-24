@@ -9,6 +9,7 @@ export const NavBar = styled.div`
   padding: 15px 80px;
   justify-content: space-between;
   align-items: center;
+  top: 0;
 `;
 
 export const Form = styled.form`

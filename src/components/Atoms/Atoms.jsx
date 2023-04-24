@@ -80,6 +80,7 @@ export const Button = styled.button`
       font-style: italic;
       background: transparent;
       border: none;
+      color: #009cff;
       font-size: 16px;
     `}
 `;
@@ -103,6 +104,11 @@ export const Ptag = styled.p`
     css`
       color: #b6b6b6;
     `}
+  ${(props) =>
+    props.$secondry &&
+    css`
+      width: 60%;
+    `}
 `;
 
 export const Label = styled.label`
@@ -118,4 +124,9 @@ export const OnclickBtn = styled.button`
   border: none;
   font-size: 14px;
   width: 40%;
+  ${(props) =>
+    props.$secondry &&
+    css`
+      width: 100%;
+    `}
 `;
