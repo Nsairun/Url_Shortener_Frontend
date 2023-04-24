@@ -103,7 +103,6 @@ export const Ptag = styled.p`
     props.$primary &&
     css`
       color: #b6b6b6;
-      font-size: 16px;
     `}
   ${(props) =>
     props.$secondry &&
