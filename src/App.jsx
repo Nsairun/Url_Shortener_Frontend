@@ -1,12 +1,19 @@
 /* eslint-disable prettier/prettier */
 import './App.css';
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Registeration from './Pages/Registration/Registration';
+import Login from './Pages/Login/Login';
 
 function App() {
   return (
     <div className="App">
-      <Registeration />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Registeration />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

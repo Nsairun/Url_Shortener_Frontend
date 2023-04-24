@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   Join,
@@ -33,7 +34,14 @@ const RegMain = styled.div`
   width: 100vw;
 `;
 
-function Registration({ placeholder, name, value }) {
+function Registration({ placeholder, name }) {
+  const navigate = useNavigate();
+  const toLogin = () => {
+    navigate('/login');
+  };
+  const toSignUp = () => {
+    navigate('/register');
+  };
   return (
     <RegMain>
       <NavBar>
@@ -42,8 +50,10 @@ function Registration({ placeholder, name, value }) {
           <ShortUrl>UrlShortener</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
-          <Button>Login</Button>
-          <Button $primary>Sign Up</Button>
+          <Button onClick={toLogin}>Login</Button>
+          <Button onClick={toSignUp} $primary>
+            Sign Up
+          </Button>
         </ButtonHolder>
       </NavBar>
       <Form>
@@ -53,32 +63,26 @@ function Registration({ placeholder, name, value }) {
         </JoinHolder>
         <Ptag>Don't think about it, do it!</Ptag>
         <Label>UserName</Label>
-        <InputField placeholder="username" name="username" value="username" />
+        <InputField placeholder="Enter Username" name="username" />
         <Label>Email</Label>
-        <InputField placeholder="emailAdress" name="email" value="email" />
+        <InputField placeholder="Enter EmailAdress" name="email" />
         <PassConfirm>
           <PassHolder>
             <Label>Password</Label>
-            <InputField
-              placeholder="password"
-              name="password"
-              value="password"
-            />
+            <InputField placeholder="Enter Password" name="password" />
           </PassHolder>
           <PassHolder>
             <Label>Password Confirm</Label>
-            <InputField
-              placeholder="confirm password"
-              name="confirmpassword"
-              value="confirmpassword"
-            />
+            <InputField placeholder="Confirm Password" name="confirmpassword" />
           </PassHolder>
         </PassConfirm>
         <FormBottom>
           <OnclickBtn>Create Account</OnclickBtn>
           <FormBottomR>
             <Ptag $primary>Already have an account </Ptag>
-            <Button $secondry>Login</Button>
+            <Button onClick={toLogin} $secondry>
+              Login
+            </Button>
           </FormBottomR>
         </FormBottom>
       </Form>

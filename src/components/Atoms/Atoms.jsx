@@ -70,7 +70,6 @@ export const Button = styled.button`
     props.$primary &&
     css`
       background: transparent;
-      color: white;
       border: 2px solid #fff;
       padding: 0.15em 0.5em;
     `}
@@ -81,6 +80,7 @@ export const Button = styled.button`
       font-style: italic;
       background: transparent;
       border: none;
+      color: #009cff;
       font-size: 16px;
     `}
 `;
@@ -105,6 +105,11 @@ export const Ptag = styled.p`
       color: #b6b6b6;
       font-size: 16px;
     `}
+  ${(props) =>
+    props.$secondry &&
+    css`
+      width: 60%;
+    `}
 `;
 
 export const Label = styled.label`
@@ -120,4 +125,9 @@ export const OnclickBtn = styled.button`
   border: none;
   font-size: 14px;
   width: 40%;
+  ${(props) =>
+    props.$secondry &&
+    css`
+      width: 100%;
+    `}
 `;
