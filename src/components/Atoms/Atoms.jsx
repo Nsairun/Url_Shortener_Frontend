@@ -64,6 +64,7 @@ export const Button = styled.button`
   color: #fff;
   font-size: 18px;
   margin: 0;
+  height: 40px;
   padding: 0.25em 1em;
 
   ${(props) =>
@@ -93,6 +94,7 @@ export const InputField = styled.input`
   border-radius: 5px;
   border: none;
   color: #b6b6b6;
+  height: 40px;
   background-color: #374151;
 `;
 

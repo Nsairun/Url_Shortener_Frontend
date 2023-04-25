@@ -1,9 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
+
 import {
   Join,
   JoinSpan,
@@ -36,10 +38,10 @@ const RegMain = styled.div`
 
 function Registration({ placeholder, name }) {
   const navigate = useNavigate();
-  const toLogin = () => {
-    navigate('/login');
-  };
   const toSignUp = () => {
+    navigate('/register');
+  };
+  const toLogIn = () => {
     navigate('/register');
   };
   return (
@@ -50,7 +52,7 @@ function Registration({ placeholder, name }) {
           <ShortUrl>UrlShortener</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
-          <Button onClick={toLogin}>Login</Button>
+          <Button>Login</Button>
           <Button onClick={toSignUp} $primary>
             Sign Up
           </Button>
@@ -77,10 +79,10 @@ function Registration({ placeholder, name }) {
           </PassHolder>
         </PassConfirm>
         <FormBottom>
-          <OnclickBtn>Create Account</OnclickBtn>
+          <OnclickBtn onClick={toSignUp}>Create Account</OnclickBtn>
           <FormBottomR>
             <Ptag $primary>Already have an account </Ptag>
-            <Button onClick={toLogin} $secondry>
+            <Button onClick={toLogIn} $secondry>
               Login
             </Button>
           </FormBottomR>
