@@ -36,7 +36,7 @@ const RegMain = styled.div`
   width: 100vw;
 `;
 
-function Registration({ placeholder, name }) {
+function Registration({ placeholder, name, required }) {
   const navigate = useNavigate();
   const toSignUp = () => {
     navigate('/register');
@@ -65,17 +65,21 @@ function Registration({ placeholder, name }) {
         </JoinHolder>
         <Ptag>Don't think about it, do it!</Ptag>
         <Label>UserName</Label>
-        <InputField placeholder="Enter Username" name="username" />
+        <InputField placeholder="Enter Username" name="username" required />
         <Label>Email</Label>
-        <InputField placeholder="Enter EmailAdress" name="email" />
+        <InputField placeholder="Enter EmailAdress" name="email" required />
         <PassConfirm>
           <PassHolder>
             <Label>Password</Label>
-            <InputField placeholder="Enter Password" name="password" />
+            <InputField placeholder="Enter Password" name="password" required />
           </PassHolder>
           <PassHolder>
             <Label>Password Confirm</Label>
-            <InputField placeholder="Confirm Password" name="confirmpassword" />
+            <InputField
+              placeholder="Confirm Password"
+              name="confirmpassword"
+              required
+            />
           </PassHolder>
         </PassConfirm>
         <FormBottom>
