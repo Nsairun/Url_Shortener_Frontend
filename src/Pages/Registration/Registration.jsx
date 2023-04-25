@@ -35,6 +35,15 @@ const RegMain = styled.div`
 `;
 
 function Registration({ placeholder, name }) {
+  const navigate = useNavigate();
+
+  const toLogin = () => {
+    navigate('/login');
+  };
+
+  const toSignUp = () => {
+    navigate('/register');
+  };
 
   return (
     <RegMain>

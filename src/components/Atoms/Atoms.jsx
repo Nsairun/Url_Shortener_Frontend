@@ -64,6 +64,7 @@ export const Button = styled.button`
   color: #fff;
   font-size: 18px;
   margin: 0;
+  height: 40px;
   padding: 0.25em 1em;
 
   ${(props) =>
@@ -88,11 +89,12 @@ export const Button = styled.button`
 export const InputField = styled.input`
   padding: 12px 10px;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   width: 100%;
   border-radius: 5px;
   border: none;
   color: #b6b6b6;
+  height: 45px;
   background-color: #374151;
 `;
 
@@ -122,6 +124,7 @@ export const OnclickBtn = styled.button`
   background-color: #009cff;
   border-radius: 10px;
   border: none;
+  height: 40px;
   font-size: 14px;
   width: 40%;
   ${(props) =>
