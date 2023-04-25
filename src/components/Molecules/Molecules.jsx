@@ -54,6 +54,7 @@ export const FooterR = styled.div`
   gap: 10px;
   align-items: center;
 `;
+
 export const LongUrlField = styled.div`
   display: flex;
   align-items: center;
