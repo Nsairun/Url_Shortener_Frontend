@@ -9,6 +9,9 @@ export const NavBar = styled.div`
   padding: 15px 80px;
   justify-content: space-between;
   align-items: center;
+  background: #1b1c2d70;
+  position: absolute;
+  width: 100%;
   top: 0;
 `;
 
@@ -20,9 +23,9 @@ export const Form = styled.form`
   flex-direction: column;
   gap: 15px;
   margin: auto;
+  background: #1b1c2d70;
   text-align: left;
   padding: 5px 10px;
-  background-color: #1b1c2d70;
 `;
 
 export const Footer = styled.div`
