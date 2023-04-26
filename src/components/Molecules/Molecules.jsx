@@ -29,6 +29,7 @@ export const PassHolder = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 100%;
 `;
 
 export const FormBottom = styled.div`
@@ -52,4 +53,13 @@ export const FooterR = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+`;
+
+export const LongUrlField = styled.div`
+  display: flex;
+  align-items: center;
+  width: 50%;
+  max-width: 80%;
+  gap: 8px;
+  margin: 2%;
 `;

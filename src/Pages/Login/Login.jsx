@@ -38,7 +38,7 @@ const FormSec = styled.div`
   margin: auto;
 `;
 
-function Login({ placeholder, name, required }) {
+function Login({ placeholder, name, required, type }) {
   const navigate = useNavigate();
   const toSignUp = () => {
     navigate('/register');
@@ -67,7 +67,7 @@ function Login({ placeholder, name, required }) {
           <JoinSpan>Started</JoinSpan>
           <Join>Today</Join>
         </JoinHolder>
-        <Ptag $secondry>
+        <Ptag>
           Hey buddy! Listen, login to your account now so that you can manage
           all your shorten links more succesfully.
         </Ptag>
@@ -76,7 +76,9 @@ function Login({ placeholder, name, required }) {
           <InputField placeholder="Enter EmailAdress" name="email" required />
           <Label>Password</Label>
           <InputField placeholder="Enter Password" name="password" required />
-          <OnclickBtn $secondry>Sign In</OnclickBtn>
+          <OnclickBtn type="submit" $secondry>
+            Sign In
+          </OnclickBtn>
           <FormBottomR>
             <Ptag>No Account </Ptag>
             <Button onClick={toSignUp} $secondry>

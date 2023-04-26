@@ -42,8 +42,9 @@ function Registration({ placeholder, name, required }) {
     navigate('/register');
   };
   const toLogIn = () => {
-    navigate('/register');
+    navigate('/login');
   };
+
   return (
     <RegMain>
       <NavBar>
@@ -52,7 +53,7 @@ function Registration({ placeholder, name, required }) {
           <ShortUrl>UrlShortener</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
-          <Button>Login</Button>
+          <Button onClick={toLogIn}>Login</Button>
           <Button onClick={toSignUp} $primary>
             Sign Up
           </Button>

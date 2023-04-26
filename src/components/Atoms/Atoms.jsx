@@ -64,15 +64,13 @@ export const Button = styled.button`
   color: #fff;
   font-size: 18px;
   margin: 0;
-  height: 40px;
-  padding: 0.25em 1em;
+  padding: 0.5em 1em;
 
   ${(props) =>
     props.$primary &&
     css`
       background: transparent;
       border: 2px solid #fff;
-      padding: 0.15em 0.5em;
     `}
   ${(props) =>
     props.$secondry &&
@@ -101,17 +99,14 @@ export const InputField = styled.input`
 export const Ptag = styled.p`
   font-size: 16px;
   color: #fff;
-  ${(props) =>
-    props.$primary &&
-    css`
-      color: #b6b6b6;
-      font-size: 16px;
-    `}
-  ${(props) =>
-    props.$secondry &&
-    css`
-      width: 60%;
-    `}
+  width: 50%;
+  max-width: 80%
+    ${(props) =>
+      props.$primary &&
+      css`
+        color: #b6b6b6;
+        font-size: 16px;
+      `};
 `;
 
 export const Label = styled.label`
