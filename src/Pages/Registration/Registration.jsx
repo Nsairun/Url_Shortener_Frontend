@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {
@@ -26,6 +26,7 @@ import {
 } from '../../components/Molecules/Molecules';
 
 import OrgF, { NavBar, Form } from '../../components/Organisms/Organisms';
+import { register } from '../../api/auth';
 
 const RegMain = styled.div`
   display: flex;
@@ -34,7 +35,43 @@ const RegMain = styled.div`
   width: 100vw;
 `;
 
+const ErrorTag = styled.div`
+  width: 100%;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 function Registration({ placeholder, name }) {
+  const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+
+  const toLogin = () => {
+    navigate('/login');
+  };
+
+  const toSignUp = () => {
+    navigate('/register');
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const data = {
+      username: e.target.username.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      confirmpassword: e.target.confirmpassword.value,
+    };
+    console.log(data);
+    if (data.password === data.confirmpassword) {
+      await register(data);
+      navigate('/');
+    } else {
+      setShow(true);
+    }
+  };
 
   return (
     <RegMain>
@@ -50,7 +87,7 @@ function Registration({ placeholder, name }) {
           </Button>
         </ButtonHolder>
       </NavBar>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <JoinHolder>
           <Join>Join Shortly,</Join>
           <JoinSpan>Save Time</JoinSpan>
@@ -70,8 +107,9 @@ function Registration({ placeholder, name }) {
             <InputField placeholder="Confirm Password" name="confirmpassword" />
           </PassHolder>
         </PassConfirm>
+        {show && <ErrorTag>password password confirmation failed</ErrorTag>}
         <FormBottom>
-          <OnclickBtn>Create Account</OnclickBtn>
+          <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>
             <Ptag $primary>Already have an account </Ptag>
             <Button onClick={toLogin} $secondry>

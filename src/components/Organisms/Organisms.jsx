@@ -8,7 +8,10 @@ export const NavBar = styled.div`
   display: flex;
   padding: 15px 80px;
   justify-content: space-between;
+  background-color: #15141494;
   align-items: center;
+  width: 100%;
+  position: absolute;
   top: 0;
 `;
 
@@ -31,7 +34,6 @@ export const Footer = styled.div`
   justify-content: space-between;
   align-items: center;
   bottom: 0;
-  background-color: #1b1c2d70;
 `;
 
 function OrgF() {
