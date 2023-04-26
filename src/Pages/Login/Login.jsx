@@ -52,7 +52,7 @@ function Login({ placeholder, name, required, type }) {
       <NavBar>
         <LogoHolder>
           <ShortLogo />
-          <ShortUrl>UrlShortener</ShortUrl>
+          <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
           <Button onClick={toLogIn}>Login</Button>
@@ -75,7 +75,12 @@ function Login({ placeholder, name, required, type }) {
           <Label>Email</Label>
           <InputField placeholder="Enter EmailAdress" name="email" required />
           <Label>Password</Label>
-          <InputField placeholder="Enter Password" name="password" required />
+          <InputField
+            placeholder="Enter Password"
+            type="password"
+            name="password"
+            required
+          />
           <OnclickBtn type="submit" $secondry>
             Sign In
           </OnclickBtn>

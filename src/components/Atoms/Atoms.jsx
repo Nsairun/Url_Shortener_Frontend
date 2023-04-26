@@ -31,7 +31,6 @@ export const ShortUrl = styled.h2`
   font-family: acumin-pro;
   font-eight: 400;
   font-size: 25px;
-  margin: 0;
   font-lineheight: 15.6px;
   color: #009cff;
   font-style: normal;
@@ -41,7 +40,6 @@ export const Join = styled.h1`
   font-family: acumin-pro;
   font-eight: 600;
   font-size: 35px;
-  margin: 0;
   font-lineheight: 15.6px;
   color: #009cff;
   font-style: normal;
@@ -51,7 +49,6 @@ export const JoinSpan = styled.h1`
   font-family: acumin-pro;
   font-eight: 600;
   font-size: 35px;
-  margin: 0;
   font-lineheight: 15.6px;
   color: #ff621f;
   font-style: normal;
@@ -87,13 +84,19 @@ export const Button = styled.button`
 export const InputField = styled.input`
   padding: 12px 10px;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   width: 100%;
   border-radius: 5px;
   border: none;
   color: #b6b6b6;
   height: 40px;
   background-color: #374151;
+  ${(props) =>
+    props.$secondry &&
+    css`
+      width: 50vw;
+      max-width: 80vw;
+    `}
 `;
 
 export const Ptag = styled.p`
@@ -120,6 +123,7 @@ export const OnclickBtn = styled.button`
   background-color: #009cff;
   border-radius: 10px;
   border: none;
+  height: 40px;
   font-size: 14px;
   width: 40%;
   ${(props) =>

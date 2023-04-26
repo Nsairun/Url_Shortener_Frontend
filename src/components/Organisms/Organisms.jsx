@@ -8,9 +8,9 @@ import { FooterL, FooterR, LogoHolder } from '../Molecules/Molecules';
 export const NavBar = styled.div`
   display: flex;
   padding: 15px 80px;
-  margin-bottom: auto;
   justify-content: space-between;
   align-items: center;
+  background: #1b1c2d70;
   top: 0;
   background-color: #1b1c2d70;
   width: 100vw;
@@ -23,7 +23,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin: 30px auto 0;
+  margin: auto;
   text-align: left;
   padding: 10px 20px;
   border-radius: 10px;
@@ -43,13 +43,17 @@ export const Footer = styled.div`
   background-color: #1b1c2d70;
 `;
 
+export const MainHolder = styled.div`
+  margin-top: 50px;
+`;
+
 function OrgF() {
   return (
     <Footer>
       <FooterL>
         <LogoHolder>
           <ShortLogo />
-          <ShortUrl>UrlShortener</ShortUrl>
+          <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
       </FooterL>
       <FooterR>

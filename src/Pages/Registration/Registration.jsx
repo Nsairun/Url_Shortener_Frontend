@@ -50,7 +50,7 @@ function Registration({ placeholder, name, required }) {
       <NavBar>
         <LogoHolder>
           <ShortLogo />
-          <ShortUrl>UrlShortener</ShortUrl>
+          <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
           <Button onClick={toLogIn}>Login</Button>
@@ -61,7 +61,7 @@ function Registration({ placeholder, name, required }) {
       </NavBar>
       <Form>
         <JoinHolder>
-          <Join>Join Shortly,</Join>
+          <Join>Join ShorTY,</Join>
           <JoinSpan>Save Time</JoinSpan>
         </JoinHolder>
         <Ptag>Don't think about it, do it!</Ptag>
@@ -72,12 +72,18 @@ function Registration({ placeholder, name, required }) {
         <PassConfirm>
           <PassHolder>
             <Label>Password</Label>
-            <InputField placeholder="Enter Password" name="password" required />
+            <InputField
+              placeholder="Enter Password"
+              type="password"
+              name="password"
+              required
+            />
           </PassHolder>
           <PassHolder>
             <Label>Password Confirm</Label>
             <InputField
               placeholder="Confirm Password"
+              type="password"
               name="confirmpassword"
               required
             />
