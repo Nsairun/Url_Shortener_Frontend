@@ -61,5 +61,4 @@ export const LongUrlField = styled.div`
   width: 50%;
   max-width: 80%;
   gap: 8px;
-  margin: 2%;
 `;
