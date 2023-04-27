@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
@@ -59,10 +60,10 @@ function Registration({ placeholder, name }) {
     e.preventDefault();
     const { target } = e;
     const data = {
-      username: e.target.username.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-      confirmpassword: e.target.confirmpassword.value,
+      username: target.username.value,
+      email: target.email.value,
+      password: target.password.value,
+      confirmpassword: target.confirmpassword.value,
     };
     console.log(data);
     if (data.password === data.confirmpassword) {
@@ -70,6 +71,9 @@ function Registration({ placeholder, name }) {
       navigate('/');
     } else {
       setShow(true);
+      setTimeout(() => {
+        setShow(false);
+      }, 2500);
     }
   };
 
@@ -107,7 +111,7 @@ function Registration({ placeholder, name }) {
             <InputField placeholder="Confirm Password" name="confirmpassword" />
           </PassHolder>
         </PassConfirm>
-        {show && <ErrorTag>password password confirmation failed</ErrorTag>}
+        {show && <ErrorTag>password confirmation failed</ErrorTag>}
         <FormBottom>
           <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>
