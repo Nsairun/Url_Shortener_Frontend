@@ -5,6 +5,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import {
   Join,
   JoinSpan,
@@ -35,7 +36,6 @@ const RegMain = styled.div`
   height: 100vh;
   width: 100vw;
 `;
-
 const ErrorTag = styled.div`
   width: 100%;
   color: red;
@@ -82,10 +82,10 @@ function Registration({ placeholder, name }) {
       <NavBar>
         <LogoHolder>
           <ShortLogo />
-          <ShortUrl>UrlShortener</ShortUrl>
+          <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
-          <Button onClick={toLogin}>Login</Button>
+          <Button onClick={toLogIn}>Login</Button>
           <Button onClick={toSignUp} $primary>
             Sign Up
           </Button>
@@ -93,22 +93,32 @@ function Registration({ placeholder, name }) {
       </NavBar>
       <Form onSubmit={handleSubmit}>
         <JoinHolder>
-          <Join>Join Shortly,</Join>
+          <Join>Join ShorTY,</Join>
           <JoinSpan>Save Time</JoinSpan>
         </JoinHolder>
         <Ptag>Don't think about it, do it!</Ptag>
         <Label>UserName</Label>
-        <InputField placeholder="Enter Username" name="username" />
+        <InputField placeholder="Enter Username" name="username" required />
         <Label>Email</Label>
-        <InputField placeholder="Enter EmailAdress" name="email" />
+        <InputField placeholder="Enter EmailAdress" name="email" required />
         <PassConfirm>
           <PassHolder>
             <Label>Password</Label>
-            <InputField placeholder="Enter Password" name="password" />
+            <InputField
+              placeholder="Enter Password"
+              type="password"
+              name="password"
+              required
+            />
           </PassHolder>
           <PassHolder>
             <Label>Password Confirm</Label>
-            <InputField placeholder="Confirm Password" name="confirmpassword" />
+            <InputField
+              placeholder="Confirm Password"
+              type="password"
+              name="confirmpassword"
+              required
+            />
           </PassHolder>
         </PassConfirm>
         {show && <ErrorTag>password confirmation failed</ErrorTag>}
@@ -116,7 +126,7 @@ function Registration({ placeholder, name }) {
           <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>
             <Ptag $primary>Already have an account </Ptag>
-            <Button onClick={toLogin} $secondry>
+            <Button onClick={toLogIn} $secondry>
               Login
             </Button>
           </FormBottomR>

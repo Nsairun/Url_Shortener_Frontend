@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { NavBar } from '../../components/Organisms/Organisms';
@@ -17,12 +18,12 @@ import {
   ShortLogo,
   ShortUrl,
 } from '../../components/Atoms/Atoms';
-
 const RegMain2 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   height: 100vh;
   width: 100vw;
 `;
