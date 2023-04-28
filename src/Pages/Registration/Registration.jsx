@@ -1,9 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-console */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import { useNavigate } from 'react-router';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
@@ -28,6 +28,7 @@ import {
 } from '../../components/Molecules/Molecules';
 
 import OrgF, { NavBar, Form } from '../../components/Organisms/Organisms';
+import { register } from '../../api/auth';
 
 const RegMain = styled.div`
   display: flex;
@@ -35,14 +36,45 @@ const RegMain = styled.div`
   height: 100vh;
   width: 100vw;
 `;
+const ErrorTag = styled.div`
+  width: 100%;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-function Registration({ placeholder, name, required }) {
+function Registration({ placeholder, name }) {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+
+  const toLogin = () => {
+    navigate('/login');
+  };
+
   const toSignUp = () => {
     navigate('/register');
   };
-  const toLogIn = () => {
-    navigate('/login');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const data = {
+      user_name: target.username.value,
+      email_address: target.email.value,
+      password: target.password.value,
+      confirmpassword: target.confirmpassword.value,
+    };
+    console.log(data);
+    if (data.password === data.confirmpassword) {
+      await register(data);
+      navigate('/');
+    } else {
+      setShow(true);
+      setTimeout(() => {
+        setShow(false);
+      }, 2500);
+    }
   };
 
   return (
@@ -59,7 +91,7 @@ function Registration({ placeholder, name, required }) {
           </Button>
         </ButtonHolder>
       </NavBar>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <JoinHolder>
           <Join>Join ShorTY,</Join>
           <JoinSpan>Save Time</JoinSpan>
@@ -89,8 +121,9 @@ function Registration({ placeholder, name, required }) {
             />
           </PassHolder>
         </PassConfirm>
+        {show && <ErrorTag>password confirmation failed</ErrorTag>}
         <FormBottom>
-          <OnclickBtn onClick={toSignUp}>Create Account</OnclickBtn>
+          <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>
             <Ptag $primary>Already have an account </Ptag>
             <Button onClick={toLogIn} $secondry>
