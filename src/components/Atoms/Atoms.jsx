@@ -31,7 +31,6 @@ export const ShortUrl = styled.h2`
   font-family: acumin-pro;
   font-eight: 400;
   font-size: 25px;
-  margin: 0;
   font-lineheight: 15.6px;
   color: #009cff;
   font-style: normal;
@@ -41,7 +40,6 @@ export const Join = styled.h1`
   font-family: acumin-pro;
   font-eight: 600;
   font-size: 35px;
-  margin: 0;
   font-lineheight: 15.6px;
   color: #009cff;
   font-style: normal;
@@ -51,7 +49,6 @@ export const JoinSpan = styled.h1`
   font-family: acumin-pro;
   font-eight: 600;
   font-size: 35px;
-  margin: 0;
   font-lineheight: 15.6px;
   color: #ff621f;
   font-style: normal;
@@ -64,15 +61,13 @@ export const Button = styled.button`
   color: #fff;
   font-size: 18px;
   margin: 0;
-  height: 40px;
-  padding: 0.25em 1em;
+  padding: 0.5em 1em;
 
   ${(props) =>
     props.$primary &&
     css`
       background: transparent;
       border: 2px solid #fff;
-      padding: 0.15em 0.5em;
     `}
   ${(props) =>
     props.$secondry &&
@@ -94,23 +89,27 @@ export const InputField = styled.input`
   border-radius: 5px;
   border: none;
   color: #b6b6b6;
-  height: 45px;
+  height: 40px;
   background-color: #374151;
+  ${(props) =>
+    props.$secondry &&
+    css`
+      width: 50vw;
+      max-width: 80vw;
+    `}
 `;
 
 export const Ptag = styled.p`
   font-size: 16px;
   color: #fff;
-  ${(props) =>
-    props.$primary &&
-    css`
-      color: #b6b6b6;
-    `}
-  ${(props) =>
-    props.$secondry &&
-    css`
-      width: 60%;
-    `}
+  width: 50%;
+  max-width: 80%
+    ${(props) =>
+      props.$primary &&
+      css`
+        color: #b6b6b6;
+        font-size: 16px;
+      `};
 `;
 
 export const Label = styled.label`

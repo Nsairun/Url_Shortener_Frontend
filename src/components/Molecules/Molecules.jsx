@@ -17,7 +17,7 @@ export const JoinHolder = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
-  align-self: ;
+  text-align: center;
 `;
 
 export const PassConfirm = styled.div`
@@ -30,6 +30,7 @@ export const PassHolder = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 100%;
 `;
 
 export const FormBottom = styled.div`
@@ -58,7 +59,8 @@ export const FooterR = styled.div`
 export const LongUrlField = styled.div`
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 50vw;
+  margin: 20px auto;
+  max-width: 80vw;
   gap: 8px;
-  margin: 2%;
 `;
