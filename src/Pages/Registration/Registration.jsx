@@ -60,8 +60,8 @@ function Registration({ placeholder, name }) {
     e.preventDefault();
     const { target } = e;
     const data = {
-      username: target.username.value,
-      email: target.email.value,
+      user_name: target.username.value,
+      email_address: target.email.value,
       password: target.password.value,
       confirmpassword: target.confirmpassword.value,
     };
