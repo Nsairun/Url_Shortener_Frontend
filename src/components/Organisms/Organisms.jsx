@@ -14,12 +14,15 @@ export const NavBar = styled.div`
   top: 0;
   background-color: #1b1c2d70;
   width: 100vw;
+  @media only screen and (max-width: 768px) {
+    padding: 10px 25px;
+  }
 `;
 
 export const Form = styled.form`
   align-self: center;
   justify-self: center;
-  width: 50%;
+  width: 95vw;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -27,8 +30,13 @@ export const Form = styled.form`
   text-align: left;
   padding: 10px 20px;
   border-radius: 10px;
+  min-height: fit-content;
   background-color: #1f2937b1;
-  max-width: 80%;
+  max-width: 600px;
+  @media only screen and (max-width: 768px) {
+    gap: 10px;
+    padding: 8px 15px;
+  }
 `;
 
 export const Footer = styled.div`
@@ -41,6 +49,9 @@ export const Footer = styled.div`
   justify-self: flex-end;
   width: 100vw;
   background-color: #1b1c2d70;
+  @media only screen and (max-width: 768px) {
+    padding: 8px 15px;
+  }
 `;
 
 export const MainHolder = styled.div`

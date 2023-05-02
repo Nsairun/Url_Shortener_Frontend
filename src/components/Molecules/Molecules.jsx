@@ -5,6 +5,9 @@ export const ButtonHolder = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+  @media only screen and (max-width: 768px) {
+    gap: 5px;
+  }
 `;
 
 export const LogoHolder = styled.div`
@@ -59,8 +62,8 @@ export const FooterR = styled.div`
 export const LongUrlField = styled.div`
   display: flex;
   align-items: center;
-  width: 50vw;
+  width: 80vw;
   margin: 20px auto;
-  max-width: 80vw;
+  max-width: 700px;
   gap: 8px;
 `;

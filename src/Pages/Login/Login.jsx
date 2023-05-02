@@ -34,7 +34,8 @@ const FormSec = styled.div`
   flex-direction: column;
   align-items: center;
   justify-self: center;
-  width: 50%;
+  width: 98vw;
+  max-width: 800px;
   margin: auto;
 `;
 
