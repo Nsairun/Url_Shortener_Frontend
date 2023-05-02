@@ -1,6 +1,14 @@
 import React from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import OrgF, { NavBar, MainHolder } from '../../components/Organisms/Organisms';
+import { NavBar } from '../../components/Organisms/Organisms';
+
+import {
+  ButtonHolder,
+  JoinHolder,
+  LogoHolder,
+} from '../../components/Molecules/Molecules';
 import {
   Button,
   InputField,
@@ -10,47 +18,54 @@ import {
   ShortLogo,
   ShortUrl,
 } from '../../components/Atoms/Atoms';
-import {
-  ButtonHolder,
-  JoinHolder,
-  LogoHolder,
-  LongUrlField,
-} from '../../components/Molecules/Molecules';
 
-const Home = styled.div`
+const RegMain2 = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
+
   height: 100vh;
   width: 100vw;
 `;
 
+const LongUrlField = styled.div`
+  width: 30vw;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
+`;
+
 function HomePage() {
+  const navigate = useNavigate();
   return (
-    <Home>
-      <NavBar>
-        <LogoHolder>
-          <ShortLogo />
-          <ShortUrl>ShorTY</ShortUrl>
-        </LogoHolder>
-        <ButtonHolder>
-          <Ptag>Hi! Alaric </Ptag>
-          <Button>Logout</Button>
-        </ButtonHolder>
-      </NavBar>
-      <MainHolder>
+    <div>
+      <RegMain2>
+        <NavBar>
+          <LogoHolder>
+            <ShortLogo />
+            <ShortUrl>UrlShortener</ShortUrl>
+          </LogoHolder>
+          <ButtonHolder>
+            <Button onClick={() => navigate('login')}>Login</Button>
+            <Button onClick={() => navigate('register')} $primary>
+              Sign Up
+            </Button>
+          </ButtonHolder>
+        </NavBar>
+
         <JoinHolder>
-          <Join>Shortened and Readable Urls </Join>
+          <Join>Shortened and Readable URLs</Join>
           <JoinSpan>Made Free</JoinSpan>
         </JoinHolder>
-        <Ptag>Shorten your long Url in the input field below!</Ptag>
+        <Ptag>Shorten your long URL in the field below</Ptag>
         <LongUrlField>
-          <InputField placeholder="Enter long Url" name="longurl" />
-          <Button>Shorten</Button>
+          <InputField placeholder="Enter LongUrl" name="url" type="url" />
+          <Button onClick={() => navigate('')}>Shorten</Button>
         </LongUrlField>
-      </MainHolder>
-      <OrgF />
-    </Home>
+      </RegMain2>
+    </div>
   );
 }
 
