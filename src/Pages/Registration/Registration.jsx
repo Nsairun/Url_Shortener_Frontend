@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import {
   Join,
   JoinSpan,
@@ -26,6 +28,7 @@ import {
 } from '../../components/Molecules/Molecules';
 
 import OrgF, { NavBar, Form } from '../../components/Organisms/Organisms';
+import { register } from '../../api/auth';
 
 const RegMain = styled.div`
   display: flex;
@@ -33,9 +36,17 @@ const RegMain = styled.div`
   height: 100vh;
   width: 100vw;
 `;
+const ErrorTag = styled.div`
+  width: 100%;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 function Registration({ placeholder, name }) {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
   const toLogin = () => {
     navigate('/login');
@@ -45,12 +56,33 @@ function Registration({ placeholder, name }) {
     navigate('/register');
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const data = {
+      user_name: target.username.value,
+      email_address: target.email.value,
+      password: target.password.value,
+      confirmpassword: target.confirmpassword.value,
+    };
+    console.log('this data in register \n', data);
+    if (data.password === data.confirmpassword) {
+      await register(data);
+      navigate('/');
+    } else {
+      setShow(true);
+      setTimeout(() => {
+        setShow(false);
+      }, 2500);
+    }
+  };
+
   return (
     <RegMain>
       <NavBar>
         <LogoHolder>
           <ShortLogo />
-          <ShortUrl>UrlShortener</ShortUrl>
+          <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
           <Button onClick={toLogin}>Login</Button>
@@ -59,28 +91,39 @@ function Registration({ placeholder, name }) {
           </Button>
         </ButtonHolder>
       </NavBar>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <JoinHolder>
-          <Join>Join Shortly,</Join>
+          <Join>Join ShorTY,</Join>
           <JoinSpan>Save Time</JoinSpan>
         </JoinHolder>
         <Ptag>Don't think about it, do it!</Ptag>
         <Label>UserName</Label>
-        <InputField placeholder="Enter Username" name="username" />
+        <InputField placeholder="Enter Username" name="username" required />
         <Label>Email</Label>
-        <InputField placeholder="Enter EmailAdress" name="email" />
+        <InputField placeholder="Enter EmailAdress" name="email" required />
         <PassConfirm>
           <PassHolder>
             <Label>Password</Label>
-            <InputField placeholder="Enter Password" name="password" />
+            <InputField
+              placeholder="Enter Password"
+              type="password"
+              name="password"
+              required
+            />
           </PassHolder>
           <PassHolder>
             <Label>Password Confirm</Label>
-            <InputField placeholder="Confirm Password" name="confirmpassword" />
+            <InputField
+              placeholder="Confirm Password"
+              type="password"
+              name="confirmpassword"
+              required
+            />
           </PassHolder>
         </PassConfirm>
+        {show && <ErrorTag>password confirmation failed</ErrorTag>}
         <FormBottom>
-          <OnclickBtn>Create Account</OnclickBtn>
+          <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>
             <Ptag $primary>Already have an account </Ptag>
             <Button onClick={toLogin} $secondry>

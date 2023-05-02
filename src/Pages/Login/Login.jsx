@@ -1,8 +1,11 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useState } from 'react';
+import { login } from '../../api/auth';
+import { saveToken } from '../../utils';
 import {
   Join,
   JoinSpan,
@@ -39,7 +42,30 @@ const FormSec = styled.div`
 `;
 
 function Login({ placeholder, name }) {
+  const [isLoading, setIsloading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const user = {
+      email_address: target.email.value,
+      password: target.password.value,
+    };
+    setIsloading(true);
+    setError('');
+    try {
+      const { data } = await login(user.email_address, user.password);
+      saveToken(data.token);
+      navigate('/');
+    } catch (e) {
+      if (e.response.status === 401) {
+        setError('Invalid username or password');
+      }
+    } finally {
+      setIsloading(false);
+    }
+  };
   const toSignUp = () => {
     navigate('/register');
   };
@@ -48,11 +74,13 @@ function Login({ placeholder, name }) {
   };
 
   return (
-    <LogMain>
+    <LogMain onSubmit={handleSubmit}>
       <NavBar>
         <LogoHolder>
           <ShortLogo />
           <ShortUrl>UrlShortener</ShortUrl>
+          {isLoading && <Ptag>Loading...</Ptag>}
+          {error && <Ptag>Error...</Ptag>}
         </LogoHolder>
         <ButtonHolder>
           <Button onClick={toLogIn}>Login</Button>
@@ -73,9 +101,9 @@ function Login({ placeholder, name }) {
         </Ptag>
         <Form>
           <Label>Email</Label>
-          <InputField placeholder="Enter EmailAdress" name="email" />
+          <InputField placeholder="Enter EmailAdress" name="email" required />
           <Label>Password</Label>
-          <InputField placeholder="Enter Password" name="password" />
+          <InputField placeholder="Enter Password" name="password" required />
           <OnclickBtn $secondry>Sign In</OnclickBtn>
           <FormBottomR>
             <Ptag>No Account </Ptag>
