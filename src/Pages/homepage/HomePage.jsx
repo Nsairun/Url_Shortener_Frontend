@@ -45,7 +45,7 @@ function HomePage() {
         </JoinHolder>
         <Ptag>Shorten your long Url in the input field below!</Ptag>
         <LongUrlField>
-          <InputField placeholder="Enter long Url" name="longurl" />
+          <InputField placeholder="Enter long Url" name="longurl" type="url" />
           <Button>Shorten</Button>
         </LongUrlField>
       </MainHolder>
