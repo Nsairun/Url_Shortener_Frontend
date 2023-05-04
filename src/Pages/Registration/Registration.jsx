@@ -30,7 +30,7 @@ import {
 import OrgF, { NavBar, Form } from '../../components/Organisms/Organisms';
 import { register } from '../../api/auth';
 
-const RegMain = styled.div`
+const Home = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -78,7 +78,7 @@ function Registration({ placeholder, name }) {
   };
 
   return (
-    <RegMain>
+    <Home>
       <NavBar>
         <LogoHolder>
           <ShortLogo />
@@ -133,7 +133,7 @@ function Registration({ placeholder, name }) {
         </FormBottom>
       </Form>
       <OrgF />
-    </RegMain>
+    </Home>
   );
 }
 
