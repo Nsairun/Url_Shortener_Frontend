@@ -58,7 +58,7 @@ function Login({ placeholder, name }) {
     try {
       const { data } = await login(user.email_address, user.password);
       saveToken(data.token);
-      navigate('/');
+      navigate('/user');
     } catch (e) {
       if (e.response.status === 401) {
         setError('Invalid username or password');
@@ -66,12 +66,6 @@ function Login({ placeholder, name }) {
     } finally {
       setIsloading(false);
     }
-  };
-  const toSignUp = () => {
-    navigate('/register');
-  };
-  const toLogIn = () => {
-    navigate('/register');
   };
 
   return (
@@ -84,9 +78,9 @@ function Login({ placeholder, name }) {
           {error && <Ptag>Error...</Ptag>}
         </LogoHolder>
         <ButtonHolder>
-          <Button onClick={toLogIn}>Login</Button>
-          <Button onClick={toSignUp} $primary>
-            Sign Up
+          <Button onClick={() => navigate('/register')}>Sign Up</Button>
+          <Button onClick={() => navigate('/')} $primary>
+            Home
           </Button>
         </ButtonHolder>
       </NavBar>
@@ -115,7 +109,7 @@ function Login({ placeholder, name }) {
           </OnclickBtn>
           <FormBottomR>
             <Ptag>No Account </Ptag>
-            <Button onClick={toSignUp} $secondry>
+            <Button onClick={() => navigate('/register')} $secondry>
               Sign Up
             </Button>
           </FormBottomR>

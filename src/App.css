@@ -12,4 +12,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  height: fit-content;
+  min-height: 100vh;
 }

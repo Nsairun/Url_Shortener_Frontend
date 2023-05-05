@@ -1,8 +1,10 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable import/prefer-default-export */
 import styled, { css } from 'styled-components';
-import { FaFacebookF, FaTwitter } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaCopy } from 'react-icons/fa';
 import { BiCodeCurly } from 'react-icons/bi';
+import { AiOutlineEye, AiOutlineCopy } from 'react-icons/ai';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 {
   /* <i class="fa fa-arrows-alt" aria-hidden="true"></i> */
@@ -15,6 +17,50 @@ export const ShortLogo = styled(BiCodeCurly)`
   margin: 0;
   @media only screen and (max-width: 768px) {
     font-size: 25px;
+  }
+`;
+
+export const ViewIcon = styled(AiOutlineEye)`
+  color: #535b69;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.7s;
+  &:hover {
+    text-shadow: #374151;
+    box-shadow: #374151;
+  }
+`;
+
+export const CopyIconCopied = styled(FaCopy)`
+  color: ${({ copy }) => (copy ? '#009cff' : '#fff')};
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.7s;
+  &:hover {
+    text-shadow: #374151;
+    box-shadow: #374151;
+  }
+`;
+
+export const CopyIcon = styled(AiOutlineCopy)`
+  color: #009cff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.7s;
+  &:hover {
+    text-shadow: #374151;
+    box-shadow: #374151;
+  }
+`;
+
+export const DeleteIcon = styled(RiDeleteBin6Line)`
+  font-size: 14px;
+  cursor: pointer;
+  color: #fb0f30;
+  transition: 0.7s;
+  &:hover {
+    box-shadow: #374151;
+    text-shadow: #374151;
   }
 `;
 
@@ -104,6 +150,32 @@ export const Button = styled.button`
   }
 `;
 
+export const UrlTxt = styled.p`
+  font-size: 15px;
+  color: #fff;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  ${(props) =>
+    props.$primary &&
+    css`
+      width: 220px;
+      color: #009cff;
+      direction: rtl;
+    `}
+  ${(props) =>
+    props.$secondry &&
+    css`
+      width: fit-content;
+      color: #535b69;
+    `}
+
+    @media only screen and (max-width: 768px) {
+    font-size: 13px;
+  }
+`;
+
 export const InputField = styled.input`
   padding: 12px 10px;
   color: #fff;
@@ -128,12 +200,20 @@ export const InputField = styled.input`
 export const Ptag = styled.p`
   font-size: 16px;
   color: #fff;
-  width: 50%;
+  align-self: left;
   max-width: 600px;
+  margin-bottom: 30px;
   ${(props) =>
     props.$primary &&
     css`
+      margin-bottom: auto;
       color: #b6b6b6;
+    `};
+  ${(props) =>
+    props.$secondry &&
+    css`
+      font-size: 25px;
+      margin-bottom: auto;
     `};
   @media only screen and (max-width: 768px) {
     font-size: 14px;
@@ -176,4 +256,35 @@ export const OnclickBtn = styled.button`
     padding: 3px 6px;
     font-size: 12px;
   }
+`;
+
+export const PharseBtn = styled.button`
+  padding: 15px 20px;
+  color: #fff;
+  font-size: 18px;
+  width: 30vw;
+  max-width: 250px;
+  background-color: #009cff;
+  font-weight: 500;
+  ${(props) =>
+    props.$primary &&
+    css`
+      background: transparent;
+      border: 2px solid #009cff;
+      color: #009cff;
+    `}
+`;
+
+export const PharseTxt = styled.p`
+  color: #009cff;
+  font-size: 35px;
+  font-weight: 800;
+  font-family: 'Lora';
+  ${(props) =>
+    props.$primary &&
+    css`
+      color: #fff;
+      font-weight: 500;
+      font-size: 18px;
+    `}
 `;

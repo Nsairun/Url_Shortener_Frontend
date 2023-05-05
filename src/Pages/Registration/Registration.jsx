@@ -48,14 +48,6 @@ function Registration({ placeholder, name }) {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
 
-  const toLogin = () => {
-    navigate('/login');
-  };
-
-  const toSignUp = () => {
-    navigate('/register');
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { target } = e;
@@ -85,9 +77,9 @@ function Registration({ placeholder, name }) {
           <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
-          <Button onClick={toLogin}>Login</Button>
-          <Button onClick={toSignUp} $primary>
-            Sign Up
+          <Button onClick={() => navigate('/login')}>Login</Button>
+          <Button onClick={() => navigate('/')} $primary>
+            Home
           </Button>
         </ButtonHolder>
       </NavBar>
@@ -126,7 +118,7 @@ function Registration({ placeholder, name }) {
           <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>
             <Ptag $primary>Already have an account </Ptag>
-            <Button onClick={toLogin} $secondry>
+            <Button onClick={() => navigate('/login')} $secondry>
               Login
             </Button>
           </FormBottomR>
