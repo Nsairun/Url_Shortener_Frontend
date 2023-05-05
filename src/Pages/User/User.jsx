@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-console */
 import React, { useContext } from 'react';
@@ -8,7 +10,6 @@ import OrgF, {
   MainHolder,
   NavBar,
   UrlHolder,
-  PhraseHolder,
 } from '../../components/Organisms/Organisms';
 
 import {
@@ -30,13 +31,14 @@ import {
   ShortUrl,
   UrlTxt,
   ViewIcon,
+  CopyIcon,
+  DeleteIcon,
   CopyIconCopied,
-  PharseBtn,
-  PharseTxt,
 } from '../../components/Atoms/Atoms';
 import MyContext from '../../context';
+import AuthGuard from '../../components/AuthGuard/AuthGuard';
 
-const Home = styled.div`
+const User = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,30 +47,35 @@ const Home = styled.div`
   position: relative;
 `;
 
-function HomePage() {
-  const { urls, handleSubmit, copy, copyText, setPhrase, phrase } =
-    useContext(MyContext);
+function UserPage({ currentUser }) {
   const navigate = useNavigate();
+  const { urls, handleSubmit, copy, copyText } = useContext(MyContext);
+  const logout = () => {
+    localStorage.removeItem('token');
+    navigate('/', { replace: true });
+    window.location.reload(true);
+  };
+
   return (
-    <Home>
+    <User>
       <NavBar>
         <LogoHolder>
           <ShortLogo />
           <ShortUrl>ShorTy</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
-          <Button onClick={() => navigate('login')}>Login</Button>
-          <Button onClick={() => navigate('register')} $primary>
-            Sign Up
+          <Ptag $secondry>Hi {currentUser.user_name}</Ptag>
+          <Button onClick={logout} $primary>
+            LogOut
           </Button>
         </ButtonHolder>
       </NavBar>
       <MainHolder>
         <JoinHolder>
-          <Join>Shortened and Readable URLs</Join>
-          <JoinSpan>Made Free</JoinSpan>
+          <Join>Welcome my friend</Join>
+          <JoinSpan>{currentUser.user_name}</JoinSpan>
         </JoinHolder>
-        <Ptag>Shorten your long URL in the field below</Ptag>
+        <Ptag>What will you like to shorten today</Ptag>
         <LongUrlField onSubmit={handleSubmit}>
           <InputField placeholder="Enter LongUrl" name="long_url" type="url" />
           <Button type="submit">Shorten</Button>
@@ -84,40 +91,23 @@ function HomePage() {
             <CardBottom>
               <ViewIcon />
               <UrlTxt $secondry>6 seconds ago</UrlTxt>
-              <CopyIconCopied
-                copy={copy}
-                onClick={(e) => {
-                  copyText(e);
-                }}
-              />
+              {copy ? (
+                <CopyIconCopied />
+              ) : (
+                <CopyIcon
+                  onClick={(e) => {
+                    copyText(e);
+                  }}
+                />
+              )}
+              <DeleteIcon />
             </CardBottom>
           </UrlCard>
         ))}
       </UrlHolder>
       <OrgF />
-      {phrase && (
-        <PhraseHolder>
-          <PharseTxt>
-            Would you like to keep track of clicks on your Url?
-          </PharseTxt>
-          <PharseTxt $primary>
-            Its an optional something fam!! Dont think too much about it.
-          </PharseTxt>
-          <PharseBtn
-            onClick={() => {
-              navigate('/register');
-              setPhrase(false);
-            }}
-          >
-            Yes, lets do it.
-          </PharseBtn>
-          <PharseBtn onClick={() => setPhrase(false)} $primary>
-            No thanks, im good.
-          </PharseBtn>
-        </PhraseHolder>
-      )}
-    </Home>
+    </User>
   );
 }
 
-export default HomePage;
+export default AuthGuard(UserPage);

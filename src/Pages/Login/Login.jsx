@@ -1,8 +1,11 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useState } from 'react';
+import { login } from '../../api/auth';
+import { saveToken } from '../../utils';
 import {
   Join,
   JoinSpan,
@@ -34,30 +37,50 @@ const FormSec = styled.div`
   flex-direction: column;
   align-items: center;
   justify-self: center;
-  width: 50%;
+  width: 98vw;
+  max-width: 800px;
   margin: auto;
 `;
 
-function Login({ placeholder, name, required, type }) {
+function Login({ placeholder, name }) {
+  const [isLoading, setIsloading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
-  const toSignUp = () => {
-    navigate('/register');
-  };
-  const toLogIn = () => {
-    navigate('/register');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const user = {
+      email_address: target.email.value,
+      password: target.password.value,
+    };
+    setIsloading(true);
+    setError('');
+    try {
+      const { data } = await login(user.email_address, user.password);
+      saveToken(data.token);
+      navigate('/user');
+    } catch (e) {
+      if (e.response.status === 401) {
+        setError('Invalid username or password');
+      }
+    } finally {
+      setIsloading(false);
+    }
   };
 
   return (
-    <LogMain>
+    <LogMain onSubmit={handleSubmit}>
       <NavBar>
         <LogoHolder>
           <ShortLogo />
           <ShortUrl>ShorTY</ShortUrl>
+          {isLoading && <Ptag>Loading...</Ptag>}
+          {error && <Ptag>Error...</Ptag>}
         </LogoHolder>
         <ButtonHolder>
-          <Button onClick={toLogIn}>Login</Button>
-          <Button onClick={toSignUp} $primary>
-            Sign Up
+          <Button onClick={() => navigate('/register')}>Sign Up</Button>
+          <Button onClick={() => navigate('/')} $primary>
+            Home
           </Button>
         </ButtonHolder>
       </NavBar>
@@ -86,7 +109,7 @@ function Login({ placeholder, name, required, type }) {
           </OnclickBtn>
           <FormBottomR>
             <Ptag>No Account </Ptag>
-            <Button onClick={toSignUp} $secondry>
+            <Button onClick={() => navigate('/register')} $secondry>
               Sign Up
             </Button>
           </FormBottomR>

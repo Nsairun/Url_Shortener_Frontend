@@ -4,10 +4,10 @@
 import axios from 'axios';
 import { readToken } from '../utils';
 
-const BASE_URL = 'http://localhost:3000/';
+const API_BASE_URL = 'http://localhost:3000/';
 
 const httpClient = axios.create({
-  baseURL: BASE_URL,
+  baseURL: API_BASE_URL,
 });
 
 httpClient.interceptors.request.use(

@@ -30,7 +30,7 @@ import {
 import OrgF, { NavBar, Form } from '../../components/Organisms/Organisms';
 import { register } from '../../api/auth';
 
-const RegMain = styled.div`
+const Home = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -47,14 +47,6 @@ const ErrorTag = styled.div`
 function Registration({ placeholder, name }) {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
-
-  const toLogin = () => {
-    navigate('/login');
-  };
-
-  const toSignUp = () => {
-    navigate('/register');
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,16 +70,16 @@ function Registration({ placeholder, name }) {
   };
 
   return (
-    <RegMain>
+    <Home>
       <NavBar>
         <LogoHolder>
           <ShortLogo />
           <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
-          <Button onClick={toLogIn}>Login</Button>
-          <Button onClick={toSignUp} $primary>
-            Sign Up
+          <Button onClick={() => navigate('/login')}>Login</Button>
+          <Button onClick={() => navigate('/')} $primary>
+            Home
           </Button>
         </ButtonHolder>
       </NavBar>
@@ -126,14 +118,14 @@ function Registration({ placeholder, name }) {
           <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>
             <Ptag $primary>Already have an account </Ptag>
-            <Button onClick={toLogIn} $secondry>
+            <Button onClick={() => navigate('/login')} $secondry>
               Login
             </Button>
           </FormBottomR>
         </FormBottom>
       </Form>
       <OrgF />
-    </RegMain>
+    </Home>
   );
 }
 

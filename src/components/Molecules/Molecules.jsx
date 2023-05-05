@@ -5,6 +5,9 @@ export const ButtonHolder = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+  @media only screen and (max-width: 768px) {
+    gap: 5px;
+  }
 `;
 
 export const LogoHolder = styled.div`
@@ -17,7 +20,9 @@ export const JoinHolder = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-self: center;
   text-align: center;
+  margin: auto;
 `;
 
 export const PassConfirm = styled.div`
@@ -56,11 +61,31 @@ export const FooterR = styled.div`
   align-items: center;
 `;
 
-export const LongUrlField = styled.div`
+export const LongUrlField = styled.form`
   display: flex;
   align-items: center;
-  width: 50vw;
+  width: 80vw;
   margin: 20px auto;
-  max-width: 80vw;
+  max-width: 700px;
   gap: 8px;
+`;
+
+export const UrlCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  max-width: 250px;
+  align-items: left;
+  gap: 8px;
+  text-align: left;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #1b1c2d70;
+  overflow: hidden;
+  height: 90px;
+`;
+
+export const CardBottom = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 `;
