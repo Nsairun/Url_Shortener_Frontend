@@ -85,6 +85,7 @@ function UserPage({ currentUser, userUrls }) {
         <LongUrlField
           onSubmit={(e) => {
             handleSubmit(e, currentUser.id);
+            window.location.reload(true);
           }}
         >
           <InputField placeholder="Enter LongUrl" name="long_url" type="url" />
@@ -110,7 +111,12 @@ function UserPage({ currentUser, userUrls }) {
                   }}
                 />
               )}
-              <DeleteIcon onClick={() => deleteUrl(urldata.id)} />
+              <DeleteIcon
+                onClick={() => {
+                  deleteUrl(urldata.id);
+                  window.location.reload(true);
+                }}
+              />
             </CardBottom>
           </UrlCard>
         ))}
