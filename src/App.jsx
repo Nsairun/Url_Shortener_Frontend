@@ -16,7 +16,7 @@ import UsersPage from './Pages/User/User';
 import HomePage from './Pages/homepage/HomePage';
 
 function App() {
-  const [urls, setUrls] = useState([]);
+  const [urls, setUrls] = useState(null);
   const [copy, setCopied] = useState(false);
   const [phrase, setPhrase] = useState(false);
   const nanoId = customAlphabet(

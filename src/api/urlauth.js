@@ -5,6 +5,10 @@ export function registerUrl(url) {
   return httpClient.post(`Urls`, url);
 }
 
-export function getUrls() {
-  return httpClient.get(`urls`).then(({ data }) => data);
+export function getUrlByUserId(UserId) {
+  return httpClient.get(`urls/userId/:${UserId}`).then(({ data }) => data);
+}
+
+export function deleteOneUrl(datad) {
+  return httpClient.delete(`urls/${datad.id}`, datad);
 }
