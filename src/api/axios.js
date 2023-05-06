@@ -2,9 +2,8 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
+import { API_BASE_URL } from '../constant';
 import { readToken } from '../utils';
-
-const API_BASE_URL = 'http://localhost:3000/';
 
 const httpClient = axios.create({
   baseURL: API_BASE_URL,
