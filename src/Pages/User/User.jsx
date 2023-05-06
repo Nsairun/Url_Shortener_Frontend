@@ -37,6 +37,7 @@ import {
 } from '../../components/Atoms/Atoms';
 import MyContext from '../../context';
 import AuthGuard from '../../components/AuthGuard/AuthGuard';
+import { deleteOneUrl } from '../../api/urlauth';
 
 const User = styled.div`
   display: flex;
@@ -47,13 +48,17 @@ const User = styled.div`
   position: relative;
 `;
 
-function UserPage({ currentUser }) {
+function UserPage({ currentUser, userUrls }) {
   const navigate = useNavigate();
-  const { urls, handleSubmit, copy, copyText } = useContext(MyContext);
+  const { handleSubmit, copy, copyText } = useContext(MyContext);
   const logout = () => {
     localStorage.removeItem('token');
     navigate('/', { replace: true });
     window.location.reload(true);
+  };
+
+  const deleteUrl = async (e) => {
+    await deleteOneUrl();
   };
 
   return (
@@ -82,8 +87,8 @@ function UserPage({ currentUser }) {
         </LongUrlField>
       </MainHolder>
       <UrlHolder>
-        {urls?.map((urldata) => (
-          <UrlCard>
+        {userUrls?.map((urldata) => (
+          <UrlCard key={urldata.id}>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
               {`http://localhost:3000/shorty.com/${urldata.short_url}`}

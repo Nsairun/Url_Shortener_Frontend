@@ -8,27 +8,30 @@ import { getCurrentUser } from '../../api/auth';
 
 export default function AuthGuard(Component) {
   function Guard(props) {
-    const [user, setUser] = useState(null);
+    const [userData, setUserData] = useState(null);
 
     const navigate = useNavigate();
     useEffect(() => {
-      if (user) return;
       getCurrentUser()
-        .then((user) => {
+        .then(({ user, userUrls }) => {
           if (!user.user_name) {
             navigate('/', { replace: true });
             return;
           }
 
-          setUser(user);
+          setUserData({ user, userUrls });
         })
         .catch(() => {
           navigate('/', { replace: true });
         });
-    }, [navigate, user]);
+    }, []);
 
-    return user ? (
-      <Component {...props} currentUser={user} />
+    return userData?.user?.user_name ? (
+      <Component
+        {...props}
+        currentUser={userData.user}
+        userUrls={userData.userUrls}
+      />
     ) : (
       <p>loading..</p>
     );
