@@ -9,6 +9,6 @@ export function getUrlByUserId(UserId) {
   return httpClient.get(`urls/userId/:${UserId}`).then(({ data }) => data);
 }
 
-export function deleteOneUrl(datad) {
-  return httpClient.delete(`urls/${datad.id}`, datad);
+export function deleteOneUrl(id) {
+  return httpClient.delete(`urls/${id}`, id);
 }

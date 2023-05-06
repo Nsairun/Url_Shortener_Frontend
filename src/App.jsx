@@ -30,13 +30,14 @@ function App() {
     setPhrase(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, UserId = null) => {
     e.preventDefault();
 
     const { target } = e;
     const data = {
       long_url: target.long_url.value,
       short_url: nanoId(),
+      UserId,
     };
     const longUrl = data.long_url;
     if (!validUrl.isUri(longUrl)) {
@@ -44,9 +45,7 @@ function App() {
     }
 
     registerUrl(data);
-    // console.log(data);
     setUrls((prev) => [...prev, data]);
-    // console.log(urls);
   };
   return (
     <MyContext.Provider
