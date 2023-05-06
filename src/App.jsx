@@ -44,9 +44,9 @@ function App() {
     }
 
     registerUrl(data);
-    console.log(data);
+    // console.log(data);
     setUrls((prev) => [...prev, data]);
-    console.log(urls);
+    // console.log(urls);
   };
   return (
     <MyContext.Provider

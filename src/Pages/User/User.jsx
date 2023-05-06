@@ -50,7 +50,7 @@ const User = styled.div`
 
 function UserPage({ currentUser, userUrls }) {
   const navigate = useNavigate();
-  const { handleSubmit, copy, copyText, urls } = useContext(MyContext);
+  const { handleSubmit, copy, copyText } = useContext(MyContext);
   const logout = () => {
     localStorage.removeItem('token');
     navigate('/', { replace: true });
@@ -87,7 +87,7 @@ function UserPage({ currentUser, userUrls }) {
         </LongUrlField>
       </MainHolder>
       <UrlHolder>
-        {urls?.map((urldata) => (
+        {userUrls?.map((urldata) => (
           <UrlCard key={urldata.id}>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
