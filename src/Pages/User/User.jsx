@@ -57,8 +57,9 @@ function UserPage({ currentUser, userUrls }) {
     window.location.reload(true);
   };
 
-  const deleteUrl = async (e) => {
-    await deleteOneUrl();
+  const deleteUrl = async (id) => {
+    console.log(id);
+    await deleteOneUrl(id);
   };
 
   return (
@@ -81,7 +82,11 @@ function UserPage({ currentUser, userUrls }) {
           <JoinSpan>{currentUser.user_name}</JoinSpan>
         </JoinHolder>
         <Ptag>What will you like to shorten today</Ptag>
-        <LongUrlField onSubmit={handleSubmit}>
+        <LongUrlField
+          onSubmit={(e) => {
+            handleSubmit(e, currentUser.id);
+          }}
+        >
           <InputField placeholder="Enter LongUrl" name="long_url" type="url" />
           <Button type="submit">Shorten</Button>
         </LongUrlField>
@@ -105,7 +110,7 @@ function UserPage({ currentUser, userUrls }) {
                   }}
                 />
               )}
-              <DeleteIcon />
+              <DeleteIcon onClick={() => deleteUrl(urldata.id)} />
             </CardBottom>
           </UrlCard>
         ))}
