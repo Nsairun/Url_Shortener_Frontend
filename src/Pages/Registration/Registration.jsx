@@ -27,7 +27,8 @@ import {
 } from '../../components/Molecules/Molecules';
 
 import OrgF, { NavBar, Form } from '../../components/Organisms/Organisms';
-import { register } from '../../api/auth';
+import { login, register } from '../../api/auth';
+import { saveToken } from '../../utils';
 
 const Home = styled.div`
   display: flex;
@@ -50,22 +51,27 @@ function Registration({ placeholder, name }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { target } = e;
-    const data = {
+    const userData = {
       user_name: target.username.value,
       email_address: target.email.value,
       password: target.password.value,
       confirmpassword: target.confirmpassword.value,
     };
-    console.log(data);
-    if (data.password === data.confirmpassword) {
-      await register(data);
-      navigate('/login');
-    } else {
+
+    if (userData.password !== userData.confirmpassword) {
       setShow(true);
       setTimeout(() => {
         setShow(false);
       }, 2500);
+
+      return;
     }
+
+    await register(userData).then(() =>
+      login(userData.email_address, userData.password)
+        .then(({ data }) => saveToken(data.token))
+        .then(() => navigate('/user'))
+    );
   };
 
   return (

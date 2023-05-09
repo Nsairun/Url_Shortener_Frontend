@@ -11,6 +11,31 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 }
 // FaExpandArrowsAlt
 
+export const SyldLoadingP = styled.p`
+  height: 100vh;
+  width: 100vw;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  letter-spacing: 3px;
+
+  @keyframes LoadingAnime {
+    from {
+      color: orangered;
+    }
+    to {
+      color: steelblue;
+    }
+  }
+
+  animation: LoadingAnime;
+  animation-duration: 2000ms;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+`;
+
 export const ShortLogo = styled(BiCodeCurly)`
   color: #ff621f;
   font-size: 40px;

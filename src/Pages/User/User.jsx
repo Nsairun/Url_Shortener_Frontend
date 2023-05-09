@@ -1,8 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-console */
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -38,6 +35,9 @@ import {
 import MyContext from '../../context';
 import AuthGuard from '../../components/AuthGuard/AuthGuard';
 import { deleteOneUrl } from '../../api/urlauth';
+import { SHORT_BASE_URL } from '../../constant';
+
+console.log('this shot_url_base', SHORT_BASE_URL);
 
 const User = styled.div`
   display: flex;
@@ -90,6 +90,11 @@ function UserPage({ currentUser, userUrls }) {
     await deleteOneUrl(id);
   };
 
+  const viewUrlStats = (url) => {
+    sessionStorage.setItem('currentUrl', JSON.stringify(url));
+    navigate('/stats');
+  };
+
   return (
     <User>
       <NavBar>
@@ -113,7 +118,7 @@ function UserPage({ currentUser, userUrls }) {
         <LongUrlField
           onSubmit={(e) => {
             handleSubmit(e, currentUser.id);
-            window.location.reload(true);
+            window.location.reload();
           }}
         >
           <InputField placeholder="Enter LongUrl" name="long_url" type="url" />
@@ -125,20 +130,20 @@ function UserPage({ currentUser, userUrls }) {
           <UrlCard key={urldata.id}>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
-              {`http://localhost:3000/shorty.com/${urldata.short_url}`}
+              `${SHORT_BASE_URL}${urldata.short_url}`
             </UrlTxt>
             <CardBottom>
-              <ViewIcon />
-              <UrlTxt $secondry>
-                created at {new Date(urldata.createdAt).toLocaleTimeString()}
-              </UrlTxt>
+
+              <ViewIcon onClick={() => viewUrlStats(urldata)} />
+              <UrlTxt $secondry>6 seconds ago</UrlTxt>
+
               {copy ? (
                 <CopyIconCopied />
               ) : (
                 <CopyIcon
-                  onClick={(e) => {
-                    copyText(e);
-                  }}
+                  onClick={() =>
+                    copyText(`${SHORT_BASE_URL}${urldata.short_url}`)
+                  }
                 />
               )}
               <DeleteIcon
