@@ -1,35 +1,36 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getCurrentUser } from '../../api/auth';
+import { getCurrentUser, getUrlVisitors } from '../../api/auth';
 import { SyldLoadingP } from '../Atoms/Atoms';
 
-export default function AuthGuard(Component) {
+export default function UrlStatsGaurd(Component) {
   function Guard(props) {
-    const [userData, setUserData] = useState(null);
+    const [data, setData] = useState({ activeUser: false, visitors: [] });
 
     const navigate = useNavigate();
     useEffect(() => {
+      const sessionUrl = JSON.parse(sessionStorage.getItem('currentUrl'));
+
       getCurrentUser()
-        .then(({ user, userUrls }) => {
+        .then(async ({ user }) => {
           if (!user.user_name) {
             navigate('/', { replace: true });
             return;
           }
 
-          setUserData({ user, userUrls });
+          await getUrlVisitors(+sessionUrl.id).then(({ data }) => {
+            setData({ activeUser: true, visitors: data });
+          });
         })
         .catch(() => {
           navigate('/', { replace: true });
         });
     }, []);
 
-    return userData?.user?.user_name ? (
-      <Component
-        {...props}
-        currentUser={userData.user}
-        userUrls={userData.userUrls}
-      />
+    return data.activeUser ? (
+      <Component {...props} visitors={data.visitors} />
     ) : (
       <SyldLoadingP>loading...</SyldLoadingP>
     );

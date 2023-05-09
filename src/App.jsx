@@ -14,6 +14,7 @@ import Registeration from './Pages/Registration/Registration';
 import Login from './Pages/Login/Login';
 import UsersPage from './Pages/User/User';
 import HomePage from './Pages/homepage/HomePage';
+import UrlStats from './Pages/Urlstats/UrlStats';
 
 function App() {
   const [urls, setUrls] = useState([]);
@@ -23,10 +24,9 @@ function App() {
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
     9
   );
-  const copyText = () => {
+  const copyText = (textToCopy) => {
     setCopied(true);
-    const textToCopy = document.getElementById('shorturl');
-    navigator.clipboard.writeText(textToCopy.textContent);
+    navigator.clipboard.writeText(textToCopy);
     setPhrase(true);
   };
 
@@ -58,6 +58,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Registeration />} />
             <Route path="/user" element={<UsersPage />} />
+            <Route path="/stats" element={<UrlStats />} />
           </Routes>
         </BrowserRouter>
       </div>

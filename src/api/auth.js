@@ -12,3 +12,7 @@ export function getCurrentUser() {
 export function login(email_address, password) {
   return httpClient.post('login', { email_address, password });
 }
+
+export function getUrlVisitors(urlId) {
+  return httpClient.get(`visitors/${urlId}`);
+}
