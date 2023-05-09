@@ -54,7 +54,7 @@ function UserPage({ currentUser, userUrls }) {
   const logout = () => {
     localStorage.removeItem('token');
     navigate('/', { replace: true });
-    window.location.reload(true);
+    window.location.reload();
   };
 
   const deleteUrl = async (id) => {

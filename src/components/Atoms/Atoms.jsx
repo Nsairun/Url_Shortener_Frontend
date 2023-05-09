@@ -231,14 +231,19 @@ export const Ptag = styled.p`
   ${(props) =>
     props.$primary &&
     css`
-      margin-bottom: auto;
+      margin-bottom: 0;
       color: #b6b6b6;
     `};
   ${(props) =>
     props.$secondry &&
     css`
       font-size: 25px;
-      margin-bottom: auto;
+      margin-bottom: 0;
+    `};
+  ${(props) =>
+    props.$normal &&
+    css`
+      margin-bottom: 0;
     `};
   @media only screen and (max-width: 768px) {
     font-size: 14px;
