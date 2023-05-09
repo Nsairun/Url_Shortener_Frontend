@@ -126,20 +126,30 @@ export const Join = styled.h1`
   font-lineheight: 15.6px;
   color: #009cff;
   font-style: normal;
+  ${(props) =>
+    props.$primary &&
+    css`
+      color: #ff621f;
+    `}
+  ${(props) =>
+    props.$secondry &&
+    css`
+      color: #000;
+    `}
   @media only screen and (max-width: 768px) {
     font-size: 18px;
   }
 `;
 
-export const JoinSpan = styled.h1`
-  font-family: acumin-pro;
+export const Heading2 = styled.h2`
+  font-family: 'acumin-pro';
   font-eight: 600;
-  font-size: 35px;
+  font-size: 24px;
   font-lineheight: 15.6px;
-  color: #ff621f;
+  color: black;
   font-style: normal;
   @media only screen and (max-width: 768px) {
-    font-size: 16px;
+    font-size: 18px;
   }
 `;
 
@@ -168,6 +178,20 @@ export const Button = styled.button`
       color: #009cff;
       font-size: 16px;
     `}
+    ${(props) =>
+    props.$tertiary &&
+    css`
+      background: transparent;
+      border: 2px solid black;
+      color: black;
+    `} 
+    
+    ${(props) =>
+    props.$quatinary &&
+    css`
+      background: red;
+      border: 2px solid red;
+    `}  
 
     @media only screen and (max-width: 768px) {
     font-size: 12px;
@@ -239,6 +263,13 @@ export const Ptag = styled.p`
     css`
       font-size: 25px;
       margin-bottom: auto;
+    `};
+
+  ${(props) =>
+    props.$tertiary &&
+    css`
+      color: black;
+      margin-bottom: 0;
     `};
   @media only screen and (max-width: 768px) {
     font-size: 14px;

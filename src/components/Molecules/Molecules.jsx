@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ButtonHolder = styled.div`
   display: flex;
@@ -68,6 +68,14 @@ export const LongUrlField = styled.form`
   margin: 20px auto;
   max-width: 700px;
   gap: 8px;
+  ${(props) =>
+    props.$primary &&
+    css`
+      width: 90%;
+      margin: 0 auto;
+      gap: 22%;
+      justify-content: center;
+    `}
 `;
 
 export const UrlCard = styled.div`

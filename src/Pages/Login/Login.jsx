@@ -8,7 +8,6 @@ import { login } from '../../api/auth';
 import { saveToken } from '../../utils';
 import {
   Join,
-  JoinSpan,
   OnclickBtn,
   InputField,
   Label,
@@ -87,7 +86,7 @@ function Login({ placeholder, name }) {
       <FormSec>
         <JoinHolder>
           <Join>Get</Join>
-          <JoinSpan>Started</JoinSpan>
+          <Join $primary>Started</Join>
           <Join>Today</Join>
         </JoinHolder>
         <Ptag>
