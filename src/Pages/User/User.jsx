@@ -35,6 +35,7 @@ import MyContext from '../../context';
 import AuthGuard from '../../components/AuthGuard/AuthGuard';
 import { deleteOneUrl } from '../../api/urlauth';
 import { APP_NAME, SHORT_BASE_URL } from '../../constant';
+import useAlert from '../../components/Custom/UseAlert';
 
 const User = styled.div`
   display: flex;
@@ -48,6 +49,9 @@ const User = styled.div`
 function UserPage({ currentUser, userUrls }) {
   const navigate = useNavigate();
   const { handleSubmit, copy, copyText } = useContext(MyContext);
+
+  const { AlertComponet, displayAlert, alertMsg } = useAlert();
+
   const logout = () => {
     localStorage.removeItem('token');
     navigate('/', { replace: true });
@@ -65,6 +69,7 @@ function UserPage({ currentUser, userUrls }) {
 
   return (
     <User>
+      {alertMsg.show && <AlertComponet />}
       <NavBar>
         <LogoHolder>
           <ShortLogo />
@@ -83,12 +88,7 @@ function UserPage({ currentUser, userUrls }) {
           <Join $primary>{currentUser.user_name}</Join>
         </JoinHolder>
         <Ptag>What will you like to shorten today</Ptag>
-        <LongUrlField
-          onSubmit={(e) => {
-            handleSubmit(e, currentUser.id);
-            window.location.reload();
-          }}
-        >
+        <LongUrlField onSubmit={(e) => handleSubmit(e, currentUser.id)}>
           <InputField placeholder="Enter LongUrl" name="long_url" type="url" />
           <Button type="submit">Shorten</Button>
         </LongUrlField>
@@ -109,9 +109,10 @@ function UserPage({ currentUser, userUrls }) {
                 <CopyIconCopied />
               ) : (
                 <CopyIcon
-                  onClick={() =>
-                    copyText(`${SHORT_BASE_URL}${urldata.short_url}`)
-                  }
+                  onClick={() => {
+                    copyText(`${SHORT_BASE_URL}${urldata.short_url}`);
+                    displayAlert('link copied');
+                  }}
                 />
               )}
               <DeleteIcon
