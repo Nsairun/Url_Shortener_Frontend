@@ -37,6 +37,7 @@ function App() {
     const data = {
       long_url: target.long_url.value,
       short_url: nanoId(),
+      createdAt: new Date().toLocaleTimeString(),
       UserId,
     };
     const longUrl = data.long_url;

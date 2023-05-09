@@ -8,7 +8,6 @@ import styled from 'styled-components';
 
 import {
   Join,
-  JoinSpan,
   ShortLogo,
   ShortUrl,
   Button,
@@ -60,7 +59,7 @@ function Registration({ placeholder, name }) {
     console.log(data);
     if (data.password === data.confirmpassword) {
       await register(data);
-      navigate('/');
+      navigate('/login');
     } else {
       setShow(true);
       setTimeout(() => {
@@ -86,7 +85,7 @@ function Registration({ placeholder, name }) {
       <Form onSubmit={handleSubmit}>
         <JoinHolder>
           <Join>Join ShorTY,</Join>
-          <JoinSpan>Save Time</JoinSpan>
+          <Join $primary>Save Time</Join>
         </JoinHolder>
         <Ptag>Don't think about it, do it!</Ptag>
         <Label>UserName</Label>

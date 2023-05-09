@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-console */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -25,7 +25,6 @@ import {
   Button,
   InputField,
   Join,
-  JoinSpan,
   Ptag,
   ShortLogo,
   ShortUrl,
@@ -34,6 +33,7 @@ import {
   CopyIcon,
   DeleteIcon,
   CopyIconCopied,
+  Heading2,
 } from '../../components/Atoms/Atoms';
 import MyContext from '../../context';
 import AuthGuard from '../../components/AuthGuard/AuthGuard';
@@ -47,9 +47,37 @@ const User = styled.div`
   width: 100vw;
   position: relative;
 `;
+const Deletebg = styled.div`
+  display: flex;
+  z-index: 1;
+  background-color: #a39f9faa;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+`;
+
+const DeleteForm = styled.div`
+  display: flex;
+  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
+  height: 20vh;
+  width: 30vw;
+  border-radius: 5px;
+  justify-content: space-evenly;
+
+  @media only screen and (max-width: 430px) {
+    width: 250px;
+  }
+`;
 
 function UserPage({ currentUser, userUrls }) {
   const navigate = useNavigate();
+  const [see, setsee] = useState(false);
+  const [info, setinfo] = useState();
   const { handleSubmit, copy, copyText } = useContext(MyContext);
   const logout = () => {
     localStorage.removeItem('token');
@@ -79,7 +107,7 @@ function UserPage({ currentUser, userUrls }) {
       <MainHolder>
         <JoinHolder>
           <Join>Welcome my friend</Join>
-          <JoinSpan>{currentUser.user_name}</JoinSpan>
+          <Join $primary>{currentUser.user_name}</Join>
         </JoinHolder>
         <Ptag>What will you like to shorten today</Ptag>
         <LongUrlField
@@ -101,7 +129,9 @@ function UserPage({ currentUser, userUrls }) {
             </UrlTxt>
             <CardBottom>
               <ViewIcon />
-              <UrlTxt $secondry>6 seconds ago</UrlTxt>
+              <UrlTxt $secondry>
+                created at {new Date(urldata.createdAt).toLocaleTimeString()}
+              </UrlTxt>
               {copy ? (
                 <CopyIconCopied />
               ) : (
@@ -113,8 +143,8 @@ function UserPage({ currentUser, userUrls }) {
               )}
               <DeleteIcon
                 onClick={() => {
-                  deleteUrl(urldata.id);
-                  window.location.reload(true);
+                  setsee(true);
+                  setinfo(urldata.id);
                 }}
               />
             </CardBottom>
@@ -122,6 +152,30 @@ function UserPage({ currentUser, userUrls }) {
         ))}
       </UrlHolder>
       <OrgF />
+      {see && (
+        <Deletebg>
+          <DeleteForm>
+            <Heading2>Are you sure you want to delete this Url</Heading2>
+            <Ptag $tertiary>
+              This will delete this Url permently. you can not undo this action
+            </Ptag>
+            <LongUrlField $primary>
+              <Button $tertiary onClick={() => setsee(!see)}>
+                Cancel
+              </Button>
+              <Button
+                $quatinary
+                onClick={() => {
+                  deleteUrl(info);
+                  window.location.reload(true);
+                }}
+              >
+                Delete
+              </Button>
+            </LongUrlField>
+          </DeleteForm>
+        </Deletebg>
+      )}
     </User>
   );
 }

@@ -24,7 +24,6 @@ import {
   Button,
   InputField,
   Join,
-  JoinSpan,
   Ptag,
   ShortLogo,
   ShortUrl,
@@ -66,7 +65,7 @@ function HomePage() {
       <MainHolder>
         <JoinHolder>
           <Join>Shortened and Readable URLs</Join>
-          <JoinSpan>Made Free</JoinSpan>
+          <Join $primary>Made Free</Join>
         </JoinHolder>
         <Ptag>Shorten your long URL in the field below</Ptag>
         <LongUrlField onSubmit={handleSubmit}>
@@ -83,7 +82,7 @@ function HomePage() {
             </UrlTxt>
             <CardBottom>
               <ViewIcon />
-              <UrlTxt $secondry>6 seconds ago</UrlTxt>
+              <UrlTxt $secondry>created at {urldata.createdAt} </UrlTxt>
               <CopyIconCopied
                 copy={copy}
                 onClick={(e) => {
