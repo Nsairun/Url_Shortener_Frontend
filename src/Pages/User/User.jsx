@@ -34,7 +34,7 @@ import {
 import MyContext from '../../context';
 import AuthGuard from '../../components/AuthGuard/AuthGuard';
 import { deleteOneUrl } from '../../api/urlauth';
-import { SHORT_BASE_URL } from '../../constant';
+import { APP_NAME, SHORT_BASE_URL } from '../../constant';
 
 const User = styled.div`
   display: flex;
@@ -98,11 +98,13 @@ function UserPage({ currentUser, userUrls }) {
           <UrlCard key={urldata.id}>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
-              `${SHORT_BASE_URL}${urldata.short_url}`
+              ${APP_NAME}${urldata.short_url}
             </UrlTxt>
             <CardBottom>
               <ViewIcon onClick={() => viewUrlStats(urldata)} />
-              <UrlTxt $secondry>6 seconds ago</UrlTxt>
+              <UrlTxt $secondry>
+                {new Date(urldata.createdAt).toLocaleTimeString()}
+              </UrlTxt>
               {copy ? (
                 <CopyIconCopied />
               ) : (

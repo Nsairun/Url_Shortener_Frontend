@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import styled, { css } from 'styled-components';
 import React from 'react';
-import { SocialF, SocialT, ShortLogo, ShortUrl } from '../Atoms/Atoms';
+import { SocialF, SocialT, ShortLogo, ShortUrl, Ptag } from '../Atoms/Atoms';
 import { FooterL, FooterR, LogoHolder } from '../Molecules/Molecules';
 
 export const NavBar = styled.div`
@@ -109,6 +109,7 @@ function OrgF() {
         </LogoHolder>
       </FooterL>
       <FooterR>
+        <Ptag $primary>Contact us on</Ptag>
         <SocialF />
         <SocialT />
       </FooterR>

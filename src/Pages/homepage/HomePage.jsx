@@ -34,7 +34,7 @@ import {
   PharseTxt,
 } from '../../components/Atoms/Atoms';
 import MyContext from '../../context';
-import { SHORT_BASE_URL } from '../../constant';
+import { APP_NAME, SHORT_BASE_URL } from '../../constant';
 
 const Home = styled.div`
   display: flex;
@@ -79,11 +79,11 @@ function HomePage() {
           <UrlCard>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
-              `${SHORT_BASE_URL}${urldata.short_url}`
+              ${APP_NAME}${urldata.short_url}
             </UrlTxt>
             <CardBottom>
               <ViewIcon />
-              <UrlTxt $secondry>6 seconds ago</UrlTxt>
+              <UrlTxt $secondry>{urldata.createdAt}</UrlTxt>
               <CopyIconCopied
                 copy={copy}
                 onClick={() =>

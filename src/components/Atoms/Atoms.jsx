@@ -6,11 +6,6 @@ import { BiCodeCurly } from 'react-icons/bi';
 import { AiOutlineEye, AiOutlineCopy } from 'react-icons/ai';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
-{
-  /* <i class="fa fa-arrows-alt" aria-hidden="true"></i> */
-}
-// FaExpandArrowsAlt
-
 export const SyldLoadingP = styled.p`
   height: 100vh;
   width: 100vw;
@@ -46,7 +41,7 @@ export const ShortLogo = styled(BiCodeCurly)`
 `;
 
 export const ViewIcon = styled(AiOutlineEye)`
-  color: #535b69;
+  color: #aaacb0;
   font-size: 14px;
   cursor: pointer;
   transition: 0.7s;
@@ -180,14 +175,15 @@ export const UrlTxt = styled.p`
     props.$primary &&
     css`
       width: 220px;
-      color: #009cff;
+      color: #ff621f;
       direction: rtl;
+      font-size: 17px;
     `}
   ${(props) =>
     props.$secondry &&
     css`
       width: fit-content;
-      color: #535b69;
+      color: #aaacb0;
     `}
 
     @media only screen and (max-width: 768px) {
