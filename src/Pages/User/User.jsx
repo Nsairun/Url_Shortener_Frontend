@@ -22,7 +22,6 @@ import {
   Button,
   InputField,
   Join,
-  JoinSpan,
   Ptag,
   ShortLogo,
   ShortUrl,
@@ -36,8 +35,6 @@ import MyContext from '../../context';
 import AuthGuard from '../../components/AuthGuard/AuthGuard';
 import { deleteOneUrl } from '../../api/urlauth';
 import { SHORT_BASE_URL } from '../../constant';
-
-console.log('this shot_url_base', SHORT_BASE_URL);
 
 const User = styled.div`
   display: flex;
@@ -58,7 +55,6 @@ function UserPage({ currentUser, userUrls }) {
   };
 
   const deleteUrl = async (id) => {
-    console.log(id);
     await deleteOneUrl(id);
   };
 
@@ -84,7 +80,7 @@ function UserPage({ currentUser, userUrls }) {
       <MainHolder>
         <JoinHolder>
           <Join>Welcome my friend</Join>
-          <JoinSpan>{currentUser.user_name}</JoinSpan>
+          <Join $primary>{currentUser.user_name}</Join>
         </JoinHolder>
         <Ptag>What will you like to shorten today</Ptag>
         <LongUrlField

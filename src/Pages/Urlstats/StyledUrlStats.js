@@ -38,6 +38,16 @@ const StyledUrlStats = styled.div`
         padding: 10px 5px;
       }
     }
+
+    .no-visitors {
+      font-family: 'Oxygen', sans-serif;
+      color: #f5f5f5;
+      width: 100%;
+      font-size: 28px;
+      letter-spacing: 4px;
+      font-weight: 800;
+      margin: 10px auto;
+    }
   }
 `;
 

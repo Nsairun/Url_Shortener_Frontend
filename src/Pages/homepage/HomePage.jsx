@@ -24,7 +24,6 @@ import {
   Button,
   InputField,
   Join,
-  JoinSpan,
   Ptag,
   ShortLogo,
   ShortUrl,
@@ -67,7 +66,7 @@ function HomePage() {
       <MainHolder>
         <JoinHolder>
           <Join>Shortened and Readable URLs</Join>
-          <JoinSpan>Made Free</JoinSpan>
+          <Join $primary>Made Free</Join>
         </JoinHolder>
         <Ptag>Shorten your long URL in the field below</Ptag>
         <LongUrlField onSubmit={handleSubmit}>

@@ -108,7 +108,8 @@ export const SocialT = styled(FaTwitter)`
 `;
 
 export const ShortUrl = styled.h2`
-  font-family: 'acumin-pro';
+  font-family: 'Lobster', cursive;
+  letter-spacing: 3px;
   font-eight: 400;
   font-size: 25px;
   font-lineheight: 15.6px;
@@ -120,26 +121,19 @@ export const ShortUrl = styled.h2`
 `;
 
 export const Join = styled.h1`
-  font-family: 'acumin-pro';
+  font-family: 'Acme', sans-serif;
   font-eight: 600;
   font-size: 35px;
   font-lineheight: 15.6px;
   color: #009cff;
   font-style: normal;
+  ${(props) =>
+    props.$primary &&
+    css`
+      color: #ff621f;
+    `}
   @media only screen and (max-width: 768px) {
     font-size: 18px;
-  }
-`;
-
-export const JoinSpan = styled.h1`
-  font-family: acumin-pro;
-  font-eight: 600;
-  font-size: 35px;
-  font-lineheight: 15.6px;
-  color: #ff621f;
-  font-style: normal;
-  @media only screen and (max-width: 768px) {
-    font-size: 16px;
   }
 `;
 
