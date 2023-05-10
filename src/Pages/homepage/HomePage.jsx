@@ -79,7 +79,7 @@ function HomePage() {
           <UrlCard>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
-              ${APP_NAME}${urldata.short_url}
+              {APP_NAME + urldata.short_url}
             </UrlTxt>
             <CardBottom>
               <ViewIcon />
