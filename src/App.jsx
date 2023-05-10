@@ -15,11 +15,14 @@ import Login from './Pages/Login/Login';
 import UsersPage from './Pages/User/User';
 import HomePage from './Pages/homepage/HomePage';
 import UrlStats from './Pages/Urlstats/UrlStats';
+import useAlert from './components/Custom/UseAlert';
+import { existInSession, saveToSession } from './utils';
 
 function App() {
   const [urls, setUrls] = useState([]);
   const [copy, setCopied] = useState(false);
   const [phrase, setPhrase] = useState(false);
+  const { AlertComponet, displayAlert, alertMsg } = useAlert();
   const nanoId = customAlphabet(
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
     6
@@ -39,8 +42,18 @@ function App() {
 
     const { target } = e;
     if (target.long_url.value.lenght <= 0) {
+      displayAlert('Please input a long url');
       return;
     }
+
+    const urlExist = existInSession(target.long_url.value);
+
+    if (urlExist) {
+      displayAlert('url already exist');
+      return;
+    }
+
+    saveToSession([{ long_url: target.long_url.value }]);
 
     const data = {
       long_url: target.long_url.value,
@@ -63,6 +76,7 @@ function App() {
       value={{ setPhrase, phrase, copy, urls, handleSubmit, copyText }}
     >
       <div className="App">
+        {alertMsg.show && <AlertComponet />}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />

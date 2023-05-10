@@ -75,8 +75,7 @@ const DeleteForm = styled.div`
 
 function UserPage({ currentUser, userUrls }) {
   const navigate = useNavigate();
-  const [see, setsee] = useState(false);
-  const [info, setinfo] = useState();
+  const [delInfo, setDelInfo] = useState({ see: false, info: '' });
   const { handleSubmit, copy, copyText } = useContext(MyContext);
 
   const { AlertComponet, displayAlert, alertMsg } = useAlert();
@@ -89,6 +88,7 @@ function UserPage({ currentUser, userUrls }) {
 
   const deleteUrl = async (id) => {
     await deleteOneUrl(id);
+    window.location.reload(true);
   };
 
   const viewUrlStats = (url) => {
@@ -102,7 +102,7 @@ function UserPage({ currentUser, userUrls }) {
       <NavBar>
         <LogoHolder>
           <ShortLogo />
-          <ShortUrl>ShorTy</ShortUrl>
+          <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
           <Ptag $secondry>Hi {currentUser.user_name}</Ptag>
@@ -118,7 +118,12 @@ function UserPage({ currentUser, userUrls }) {
         </JoinHolder>
         <Ptag>What will you like to shorten today</Ptag>
         <LongUrlField onSubmit={(e) => handleSubmit(e, currentUser.id)}>
-          <InputField placeholder="Enter LongUrl" name="long_url" type="url" />
+          <InputField
+            placeholder="Enter LongUrl"
+            name="long_url"
+            type="url"
+            required
+          />
           <Button type="submit">Shorten</Button>
         </LongUrlField>
       </MainHolder>
@@ -145,17 +150,14 @@ function UserPage({ currentUser, userUrls }) {
                 />
               )}
               <DeleteIcon
-                onClick={() => {
-                  setsee(true);
-                  setinfo(urldata.id);
-                }}
+                onClick={() => setDelInfo({ see: true, info: urldata.id })}
               />
             </CardBottom>
           </UrlCard>
         ))}
       </UrlHolder>
       <OrgF />
-      {see && (
+      {delInfo.see && (
         <Deletebg>
           <DeleteForm>
             <Heading2>Are you sure you want to delete this Url.</Heading2>
@@ -163,16 +165,13 @@ function UserPage({ currentUser, userUrls }) {
               This will delete this Url permently. you can not undo this action
             </Ptag>
             <LongUrlField $primary>
-              <Button $tertiary onClick={() => setsee(!see)}>
+              <Button
+                $tertiary
+                onClick={() => setDelInfo((prev) => ({ ...prev, see: false }))}
+              >
                 Cancel
               </Button>
-              <Button
-                $quatinary
-                onClick={() => {
-                  deleteUrl(info);
-                  window.location.reload(true);
-                }}
-              >
+              <Button $quatinary onClick={() => deleteUrl(delInfo.info)}>
                 Delete
               </Button>
             </LongUrlField>
