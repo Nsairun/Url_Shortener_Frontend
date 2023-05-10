@@ -6,11 +6,6 @@ import { BiCodeCurly } from 'react-icons/bi';
 import { AiOutlineEye, AiOutlineCopy } from 'react-icons/ai';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
-{
-  /* <i class="fa fa-arrows-alt" aria-hidden="true"></i> */
-}
-// FaExpandArrowsAlt
-
 export const SyldLoadingP = styled.p`
   height: 100vh;
   width: 100vw;
@@ -46,7 +41,7 @@ export const ShortLogo = styled(BiCodeCurly)`
 `;
 
 export const ViewIcon = styled(AiOutlineEye)`
-  color: #535b69;
+  color: #aaacb0;
   font-size: 14px;
   cursor: pointer;
   transition: 0.7s;
@@ -108,7 +103,8 @@ export const SocialT = styled(FaTwitter)`
 `;
 
 export const ShortUrl = styled.h2`
-  font-family: 'acumin-pro';
+  font-family: 'Lobster', cursive;
+  letter-spacing: 3px;
   font-eight: 400;
   font-size: 25px;
   font-lineheight: 15.6px;
@@ -120,7 +116,7 @@ export const ShortUrl = styled.h2`
 `;
 
 export const Join = styled.h1`
-  font-family: 'acumin-pro';
+  font-family: 'Acme', sans-serif;
   font-eight: 600;
   font-size: 35px;
   font-lineheight: 15.6px;
@@ -210,14 +206,15 @@ export const UrlTxt = styled.p`
     props.$primary &&
     css`
       width: 220px;
-      color: #009cff;
+      color: #ff621f;
       direction: rtl;
+      font-size: 17px;
     `}
   ${(props) =>
     props.$secondry &&
     css`
       width: fit-content;
-      color: #535b69;
+      color: #aaacb0;
     `}
 
     @media only screen and (max-width: 768px) {
@@ -255,14 +252,19 @@ export const Ptag = styled.p`
   ${(props) =>
     props.$primary &&
     css`
-      margin-bottom: auto;
+      margin-bottom: 0;
       color: #b6b6b6;
     `};
   ${(props) =>
     props.$secondry &&
     css`
       font-size: 25px;
-      margin-bottom: auto;
+      margin-bottom: 0;
+    `};
+  ${(props) =>
+    props.$normal &&
+    css`
+      margin-bottom: 0;
     `};
 
   ${(props) =>

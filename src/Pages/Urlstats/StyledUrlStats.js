@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledUrlStats = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 15px 5px;
+  padding: 15px Calc(5px + 1.5vw);
 
   .urlInfo {
     .clicks {
@@ -12,7 +12,7 @@ const StyledUrlStats = styled.div`
     }
 
     margin: 10px auto;
-    width: 97vw;
+    width: 100%;
     max-width: 1500px;
 
     table {
@@ -37,6 +37,16 @@ const StyledUrlStats = styled.div`
         max-width: 300px;
         padding: 10px 5px;
       }
+    }
+
+    .no-visitors {
+      font-family: 'Oxygen', sans-serif;
+      color: #f5f5f5;
+      width: 100%;
+      font-size: 28px;
+      letter-spacing: 4px;
+      font-weight: 800;
+      margin: 10px auto;
     }
   }
 `;

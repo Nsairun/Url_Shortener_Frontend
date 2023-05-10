@@ -24,6 +24,7 @@ function App() {
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
     9
   );
+
   const copyText = (textToCopy) => {
     setCopied(true);
     navigator.clipboard.writeText(textToCopy);
@@ -34,15 +35,21 @@ function App() {
     e.preventDefault();
 
     const { target } = e;
+    if (target.long_url.value.lenght <= 0) {
+      return;
+    }
+
     const data = {
       long_url: target.long_url.value,
       short_url: nanoId(),
       createdAt: new Date().toLocaleTimeString(),
       UserId,
     };
+
     const longUrl = data.long_url;
     if (!validUrl.isUri(longUrl)) {
       console.log(`NOT_A_VALID_URL`);
+      return;
     }
 
     registerUrl(data);

@@ -107,7 +107,7 @@ function Login({ placeholder, name }) {
             Sign In
           </OnclickBtn>
           <FormBottomR>
-            <Ptag>No Account </Ptag>
+            <Ptag $normal>No Account </Ptag>
             <Button onClick={() => navigate('/register')} $secondry>
               Sign Up
             </Button>

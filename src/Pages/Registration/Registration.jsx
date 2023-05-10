@@ -91,7 +91,7 @@ function Registration({ placeholder, name }) {
       <Form onSubmit={handleSubmit}>
         <JoinHolder>
           <Join>Join ShorTY,</Join>
-          <Join $primary>Save Time</Join>
+          <Join $primary>Make It Short!</Join>
         </JoinHolder>
         <Ptag>Don't think about it, do it!</Ptag>
         <Label>UserName</Label>

@@ -35,9 +35,8 @@ import {
 import MyContext from '../../context';
 import AuthGuard from '../../components/AuthGuard/AuthGuard';
 import { deleteOneUrl } from '../../api/urlauth';
-import { SHORT_BASE_URL } from '../../constant';
-
-console.log('this shot_url_base', SHORT_BASE_URL);
+import { APP_NAME, SHORT_BASE_URL } from '../../constant';
+import useAlert from '../../components/Custom/UseAlert';
 
 const User = styled.div`
   display: flex;
@@ -79,14 +78,16 @@ function UserPage({ currentUser, userUrls }) {
   const [see, setsee] = useState(false);
   const [info, setinfo] = useState();
   const { handleSubmit, copy, copyText } = useContext(MyContext);
+
+  const { AlertComponet, displayAlert, alertMsg } = useAlert();
+
   const logout = () => {
     localStorage.removeItem('token');
     navigate('/', { replace: true });
-    window.location.reload(true);
+    window.location.reload();
   };
 
   const deleteUrl = async (id) => {
-    console.log(id);
     await deleteOneUrl(id);
   };
 
@@ -97,6 +98,7 @@ function UserPage({ currentUser, userUrls }) {
 
   return (
     <User>
+      {alertMsg.show && <AlertComponet />}
       <NavBar>
         <LogoHolder>
           <ShortLogo />
@@ -115,12 +117,7 @@ function UserPage({ currentUser, userUrls }) {
           <Join $primary>{currentUser.user_name}</Join>
         </JoinHolder>
         <Ptag>What will you like to shorten today</Ptag>
-        <LongUrlField
-          onSubmit={(e) => {
-            handleSubmit(e, currentUser.id);
-            window.location.reload();
-          }}
-        >
+        <LongUrlField onSubmit={(e) => handleSubmit(e, currentUser.id)}>
           <InputField placeholder="Enter LongUrl" name="long_url" type="url" />
           <Button type="submit">Shorten</Button>
         </LongUrlField>
@@ -130,20 +127,21 @@ function UserPage({ currentUser, userUrls }) {
           <UrlCard key={urldata.id}>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
-              `${SHORT_BASE_URL}${urldata.short_url}`
+              ${APP_NAME}${urldata.short_url}
             </UrlTxt>
             <CardBottom>
-
               <ViewIcon onClick={() => viewUrlStats(urldata)} />
-              <UrlTxt $secondry>6 seconds ago</UrlTxt>
-
+              <UrlTxt $secondry>
+                {new Date(urldata.createdAt).toLocaleTimeString()}
+              </UrlTxt>
               {copy ? (
                 <CopyIconCopied />
               ) : (
                 <CopyIcon
-                  onClick={() =>
-                    copyText(`${SHORT_BASE_URL}${urldata.short_url}`)
-                  }
+                  onClick={() => {
+                    copyText(`${SHORT_BASE_URL}${urldata.short_url}`);
+                    displayAlert('link copied');
+                  }}
                 />
               )}
               <DeleteIcon

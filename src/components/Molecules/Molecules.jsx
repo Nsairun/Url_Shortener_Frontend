@@ -96,4 +96,5 @@ export const UrlCard = styled.div`
 export const CardBottom = styled.div`
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 `;
