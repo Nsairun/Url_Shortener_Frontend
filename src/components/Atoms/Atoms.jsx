@@ -127,6 +127,23 @@ export const Join = styled.h1`
     css`
       color: #ff621f;
     `}
+  ${(props) =>
+    props.$secondry &&
+    css`
+      color: #000;
+    `}
+  @media only screen and (max-width: 768px) {
+    font-size: 18px;
+  }
+`;
+
+export const Heading2 = styled.h2`
+  font-family: 'acumin-pro';
+  font-eight: 600;
+  font-size: 24px;
+  font-lineheight: 15.6px;
+  color: black;
+  font-style: normal;
   @media only screen and (max-width: 768px) {
     font-size: 18px;
   }
@@ -157,6 +174,20 @@ export const Button = styled.button`
       color: #009cff;
       font-size: 16px;
     `}
+    ${(props) =>
+    props.$tertiary &&
+    css`
+      background: transparent;
+      border: 2px solid black;
+      color: black;
+    `} 
+    
+    ${(props) =>
+    props.$quatinary &&
+    css`
+      background: red;
+      border: 2px solid red;
+    `}  
 
     @media only screen and (max-width: 768px) {
     font-size: 12px;
@@ -233,6 +264,13 @@ export const Ptag = styled.p`
   ${(props) =>
     props.$normal &&
     css`
+      margin-bottom: 0;
+    `};
+
+  ${(props) =>
+    props.$tertiary &&
+    css`
+      color: black;
       margin-bottom: 0;
     `};
   @media only screen and (max-width: 768px) {

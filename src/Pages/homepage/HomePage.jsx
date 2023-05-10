@@ -83,7 +83,7 @@ function HomePage() {
             </UrlTxt>
             <CardBottom>
               <ViewIcon />
-              <UrlTxt $secondry>{urldata.createdAt}</UrlTxt>
+              <UrlTxt $secondry>created at {urldata.createdAt} </UrlTxt>
               <CopyIconCopied
                 copy={copy}
                 onClick={() =>
