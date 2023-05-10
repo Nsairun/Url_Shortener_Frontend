@@ -29,6 +29,9 @@ function App() {
     setCopied(true);
     navigator.clipboard.writeText(textToCopy);
     setPhrase(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
   };
 
   const handleSubmit = (e, UserId = null) => {
