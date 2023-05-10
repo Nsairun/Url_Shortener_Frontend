@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentUser } from '../../api/auth';
+import { saveToSession } from '../../utils';
 import { SyldLoadingP } from '../Atoms/Atoms';
 
 export default function AuthGuard(Component) {
@@ -16,6 +17,8 @@ export default function AuthGuard(Component) {
             navigate('/', { replace: true });
             return;
           }
+
+          saveToSession(userUrls);
 
           setUserData({ user, userUrls });
         })

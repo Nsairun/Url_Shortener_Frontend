@@ -58,7 +58,7 @@ function HomePage() {
       <NavBar>
         <LogoHolder>
           <ShortLogo />
-          <ShortUrl>ShorTy</ShortUrl>
+          <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
           <Button onClick={() => navigate('login')}>Login</Button>
@@ -74,7 +74,12 @@ function HomePage() {
         </JoinHolder>
         <Ptag>Shorten your long URL in the field below</Ptag>
         <LongUrlField onSubmit={handleSubmit}>
-          <InputField placeholder="Enter LongUrl" name="long_url" type="url" />
+          <InputField
+            placeholder="Enter Long_Url"
+            name="long_url"
+            type="url"
+            required
+          />
           <Button type="submit">Shorten</Button>
         </LongUrlField>
       </MainHolder>

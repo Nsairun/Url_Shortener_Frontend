@@ -59,7 +59,7 @@ function Login({ placeholder, name }) {
       saveToken(data.token);
       navigate('/user');
     } catch (e) {
-      if (e.response.status === 401) {
+      if (e?.response?.status === 401) {
         setError('Invalid username or password');
       }
     } finally {
