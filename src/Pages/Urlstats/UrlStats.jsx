@@ -14,29 +14,34 @@ function UrlStats({ visitors }) {
         <p className="clicks">
           Total visits {JSON.parse(sessionStorage.getItem('currentUrl')).clicks}
         </p>
-
-        <table>
-          <tr>
-            <th>Location</th>
-            <th>browser</th>
-            <th>First visit</th>
-            <th>Newest visit</th>
-          </tr>
-          {visitors.map((visitor) => (
+        {visitors.length >= 1 ? (
+          <table>
             <tr>
-              <td>{visitor.location}</td>
-              <td>{visitor.browser}</td>
-              <td>
-                {new Date(visitor.createdAt).toDateString()} <br />{' '}
-                {new Date(visitor.createdAt).toLocaleTimeString()}
-              </td>
-              <td>
-                {new Date(visitor.updatedAt).toDateString()} <br />{' '}
-                {new Date(visitor.updatedAt).toLocaleTimeString()}
-              </td>
+              <th>Location</th>
+              <th>browser</th>
+              <th>First visit</th>
+              <th>Newest visit</th>
             </tr>
-          ))}
-        </table>
+            {visitors.map((visitor) => (
+              <tr>
+                <td>{visitor.location}</td>
+                <td>{visitor.browser}</td>
+                <td>
+                  {new Date(visitor.createdAt).toDateString()} <br />{' '}
+                  {new Date(visitor.createdAt).toLocaleTimeString()}
+                </td>
+                <td>
+                  {new Date(visitor.updatedAt).toDateString()} <br />{' '}
+                  {new Date(visitor.updatedAt).toLocaleTimeString()}
+                </td>
+              </tr>
+            ))}
+          </table>
+        ) : (
+          <p className="no-visitors">
+            you&apos;ve had no visits on this link yet
+          </p>
+        )}
       </div>
     </StyledUrlStats>
   );
