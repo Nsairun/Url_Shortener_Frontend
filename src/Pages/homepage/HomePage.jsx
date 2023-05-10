@@ -27,6 +27,7 @@ import {
   Ptag,
   ShortLogo,
   ShortUrl,
+  CopyIcon,
   UrlTxt,
   ViewIcon,
   CopyIconCopied,
@@ -35,6 +36,7 @@ import {
 } from '../../components/Atoms/Atoms';
 import MyContext from '../../context';
 import { APP_NAME, SHORT_BASE_URL } from '../../constant';
+import useAlert from '../../components/Custom/UseAlert';
 
 const Home = styled.div`
   display: flex;
@@ -48,9 +50,11 @@ const Home = styled.div`
 function HomePage() {
   const { urls, handleSubmit, copy, copyText, setPhrase, phrase } =
     useContext(MyContext);
+  const { AlertComponet, displayAlert, alertMsg } = useAlert();
   const navigate = useNavigate();
   return (
     <Home>
+      {alertMsg.show && <AlertComponet />}
       <NavBar>
         <LogoHolder>
           <ShortLogo />
@@ -79,17 +83,22 @@ function HomePage() {
           <UrlCard>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
-              ${APP_NAME}${urldata.short_url}
+              {APP_NAME}
+              {urldata.short_url}
             </UrlTxt>
             <CardBottom>
               <ViewIcon />
               <UrlTxt $secondry>created at {urldata.createdAt} </UrlTxt>
-              <CopyIconCopied
-                copy={copy}
-                onClick={() =>
-                  copyText(`${SHORT_BASE_URL}${urldata.short_url}`)
-                }
-              />
+              {copy ? (
+                <CopyIconCopied />
+              ) : (
+                <CopyIcon
+                  onClick={() => {
+                    copyText(`${SHORT_BASE_URL}${urldata.short_url}`);
+                    displayAlert('link copied');
+                  }}
+                />
+              )}
             </CardBottom>
           </UrlCard>
         ))}
