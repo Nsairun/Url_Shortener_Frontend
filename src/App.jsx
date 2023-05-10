@@ -22,7 +22,7 @@ function App() {
   const [phrase, setPhrase] = useState(false);
   const nanoId = customAlphabet(
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
-    6
+    7
   );
 
   const copyText = (textToCopy) => {
