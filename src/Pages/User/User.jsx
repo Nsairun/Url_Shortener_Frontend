@@ -131,6 +131,7 @@ function UserPage({ currentUser, userUrls }) {
               {urldata.short_url}
             </UrlTxt>
             <CardBottom>
+
               <ViewIcon onClick={() => viewUrlStats(urldata)} />
               <UrlTxt $secondry>
                 {new Date(urldata.createdAt).toLocaleTimeString()}
