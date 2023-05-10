@@ -159,7 +159,7 @@ function UserPage({ currentUser, userUrls }) {
       {see && (
         <Deletebg>
           <DeleteForm>
-            <Heading2>Are you sure you want to delete this Url</Heading2>
+            <Heading2>Are you sure you want to delete this Url.</Heading2>
             <Ptag $tertiary>
               This will delete this Url permently. you can not undo this action
             </Ptag>
