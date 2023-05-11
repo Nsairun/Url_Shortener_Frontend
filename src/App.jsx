@@ -4,7 +4,7 @@
 /* eslint-disable import/no-named-as-default-member */
 /* eslint-disable prettier/prettier */
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import validUrl from 'valid-url';
 import { customAlphabet } from 'nanoid';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -27,6 +27,10 @@ function App() {
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
     6
   );
+
+  useEffect(() => {
+    setUrls(() => [...(JSON.parse(sessionStorage.getItem('userUrls')) || [])]);
+  }, []);
 
   const copyText = (textToCopy) => {
     setCopied(true);
@@ -53,14 +57,14 @@ function App() {
       return;
     }
 
-    saveToSession([{ long_url: target.long_url.value }]);
-
     const data = {
       long_url: target.long_url.value,
       short_url: nanoId(),
       createdAt: new Date().toLocaleTimeString(),
       UserId,
     };
+
+    saveToSession([data]);
 
     const longUrl = data.long_url;
     if (!validUrl.isUri(longUrl)) {
@@ -71,9 +75,10 @@ function App() {
     registerUrl(data);
     setUrls((prev) => [...prev, data]);
   };
+
   return (
     <MyContext.Provider
-      value={{ setPhrase, phrase, copy, urls, handleSubmit, copyText }}
+      value={{ setPhrase, phrase, copy, urls, handleSubmit, copyText, setUrls }}
     >
       <div className="App">
         {alertMsg.show && <AlertComponet />}

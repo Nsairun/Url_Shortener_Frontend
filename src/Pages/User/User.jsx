@@ -37,6 +37,7 @@ import AuthGuard from '../../components/AuthGuard/AuthGuard';
 import { deleteOneUrl } from '../../api/urlauth';
 import { APP_NAME, SHORT_BASE_URL } from '../../constant';
 import useAlert from '../../components/Custom/UseAlert';
+import { removeFromSession } from '../../utils';
 
 const User = styled.div`
   display: flex;
@@ -82,13 +83,16 @@ function UserPage({ currentUser, userUrls }) {
 
   const logout = () => {
     localStorage.removeItem('token');
+    sessionStorage.removeItem('userUrls');
+    sessionStorage.removeItem('currentUrl');
     navigate('/', { replace: true });
     window.location.reload();
   };
 
   const deleteUrl = async (id) => {
     await deleteOneUrl(id);
-    window.location.reload(true);
+    removeFromSession(id);
+    // window.location.reload(true);
   };
 
   const viewUrlStats = (url) => {
@@ -135,8 +139,10 @@ function UserPage({ currentUser, userUrls }) {
               {APP_NAME + urldata.short_url}
             </UrlTxt>
             <CardBottom>
-
-              <ViewIcon onClick={() => viewUrlStats(urldata)} />
+              <ViewIcon
+                title="view url stats"
+                onClick={() => viewUrlStats(urldata)}
+              />
               <UrlTxt $secondry>
                 {new Date(urldata.createdAt).toLocaleTimeString()}
               </UrlTxt>
@@ -144,6 +150,7 @@ function UserPage({ currentUser, userUrls }) {
                 <CopyIconCopied />
               ) : (
                 <CopyIcon
+                  title="copy url"
                   onClick={() => {
                     copyText(`${SHORT_BASE_URL}${urldata.short_url}`);
                     displayAlert('link copied');
@@ -151,6 +158,7 @@ function UserPage({ currentUser, userUrls }) {
                 />
               )}
               <DeleteIcon
+                title="delete url"
                 onClick={() => setDelInfo({ see: true, info: urldata.id })}
               />
             </CardBottom>

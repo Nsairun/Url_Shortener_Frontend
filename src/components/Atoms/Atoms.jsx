@@ -45,9 +45,9 @@ export const ViewIcon = styled(AiOutlineEye)`
   font-size: 14px;
   cursor: pointer;
   transition: 0.7s;
+  background: transparent;
   &:hover {
-    text-shadow: #374151;
-    box-shadow: #374151;
+    box-shadow: 0 0 50px #374151;
   }
 `;
 
@@ -57,8 +57,7 @@ export const CopyIconCopied = styled(FaCopy)`
   cursor: pointer;
   transition: 0.7s;
   &:hover {
-    text-shadow: #374151;
-    box-shadow: #374151;
+    box-shadow: 0 0 50px #374151;
   }
 `;
 
@@ -88,6 +87,7 @@ export const SocialF = styled(FaFacebookF)`
   color: #fff;
   font-size: 25px;
   margin: 0;
+  cursor: pointer;
   @media only screen and (max-width: 768px) {
     font-size: 16px;
   }
@@ -97,6 +97,7 @@ export const SocialT = styled(FaTwitter)`
   color: #fff;
   font-size: 25px;
   margin: 0;
+  cursor: pointer;
   @media only screen and (max-width: 768px) {
     font-size: 16px;
   }
@@ -158,23 +159,25 @@ export const Button = styled.button`
   margin: 0;
   padding: 0.5em 1em;
 
+  &:hover {
+    background: #fff;
+    color: #000;
+    direction: rtl;
+    transition: 0.7s ease-in-out;
+  }
   ${(props) =>
     props.$primary &&
     css`
       background: transparent;
       border: 1px solid #fff;
+      &:hover {
+        background: #009cff;
+        color: #fff;
+        direction: initial;
+        transition: 0.7s ease-in-out;
+      }
     `}
   ${(props) =>
-    props.$secondry &&
-    css`
-      text-decoration: underline;
-      font-style: italic;
-      background: transparent;
-      border: none;
-      color: #009cff;
-      font-size: 16px;
-    `}
-    ${(props) =>
     props.$tertiary &&
     css`
       background: transparent;
@@ -292,6 +295,16 @@ export const Label = styled.label`
   }
 `;
 
+export const LinkPage = styled.a`
+  text-decoration: underline;
+  cursor: pointer;
+  font-style: italic;
+  border: none;
+  color: #009cff;
+  font-size: 16px;
+  margin: auto;
+`;
+
 export const OnclickBtn = styled.button`
   color: #fff;
   background-color: #009cff;
@@ -301,6 +314,12 @@ export const OnclickBtn = styled.button`
   width: 50%;
   padding: 0.5em 1em;
   max-width: 100%;
+  &:hover {
+    background: #0566a2;
+    color: #fff;
+    direction: initial;
+    transition: 0.7s ease-in-out;
+  }
   ${(props) =>
     props.$secondry &&
     css`

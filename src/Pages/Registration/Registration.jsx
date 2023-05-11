@@ -14,6 +14,7 @@ import {
   InputField,
   Label,
   OnclickBtn,
+  LinkPage,
   Ptag,
 } from '../../components/Atoms/Atoms';
 import {
@@ -82,8 +83,10 @@ function Registration({ placeholder, name }) {
           <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
-          <Button onClick={() => navigate('/login')}>Login</Button>
-          <Button onClick={() => navigate('/')} $primary>
+          <Button type="button" onClick={() => navigate('/login')}>
+            Login
+          </Button>
+          <Button type="button" onClick={() => navigate('/')} $primary>
             Home
           </Button>
         </ButtonHolder>
@@ -122,10 +125,10 @@ function Registration({ placeholder, name }) {
         <FormBottom>
           <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>
-            <Ptag $primary>Already have an account </Ptag>
-            <Button onClick={() => navigate('/login')} $secondry>
-              Login
-            </Button>
+            <Ptag $primary>
+              Already have an account{' '}
+              <LinkPage onClick={() => navigate('/login')}>Login</LinkPage>{' '}
+            </Ptag>
           </FormBottomR>
         </FormBottom>
       </Form>
