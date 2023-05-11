@@ -83,6 +83,8 @@ function UserPage({ currentUser, userUrls }) {
 
   const logout = () => {
     localStorage.removeItem('token');
+    sessionStorage.removeItem('userUrls');
+    sessionStorage.removeItem('currentUrl');
     navigate('/', { replace: true });
     window.location.reload();
   };

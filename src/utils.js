@@ -1,7 +1,11 @@
 const TOKEN_LOCATION = 'token';
 
 export function saveToSession(userUrls) {
-  sessionStorage.setItem('userUrls', JSON.stringify(userUrls));
+  const preSession = JSON.parse(sessionStorage.getItem('userUrls')) || [];
+
+  const urlSets = Array.from(new Set([...preSession, ...userUrls]));
+
+  sessionStorage.setItem('userUrls', JSON.stringify(urlSets));
 }
 
 export function removeFromSession(id) {
