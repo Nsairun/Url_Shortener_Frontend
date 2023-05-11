@@ -37,6 +37,7 @@ import AuthGuard from '../../components/AuthGuard/AuthGuard';
 import { deleteOneUrl } from '../../api/urlauth';
 import { APP_NAME, SHORT_BASE_URL } from '../../constant';
 import useAlert from '../../components/Custom/UseAlert';
+import { removeFromSession } from '../../utils';
 
 const User = styled.div`
   display: flex;
@@ -82,13 +83,16 @@ function UserPage({ currentUser, userUrls }) {
 
   const logout = () => {
     localStorage.removeItem('token');
+    sessionStorage.removeItem('userUrls');
+    sessionStorage.removeItem('currentUrl');
     navigate('/', { replace: true });
     window.location.reload();
   };
 
   const deleteUrl = async (id) => {
     await deleteOneUrl(id);
-    window.location.reload(true);
+    removeFromSession(id);
+    // window.location.reload(true);
   };
 
   const viewUrlStats = (url) => {
