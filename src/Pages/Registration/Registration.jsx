@@ -82,8 +82,10 @@ function Registration({ placeholder, name }) {
           <ShortUrl>ShorTY</ShortUrl>
         </LogoHolder>
         <ButtonHolder>
-          <Button onClick={() => navigate('/login')}>Login</Button>
-          <Button onClick={() => navigate('/')} $primary>
+          <Button type="button" onClick={() => navigate('/login')}>
+            Login
+          </Button>
+          <Button type="button" onClick={() => navigate('/')} $primary>
             Home
           </Button>
         </ButtonHolder>
@@ -123,7 +125,7 @@ function Registration({ placeholder, name }) {
           <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>
             <Ptag $primary>Already have an account </Ptag>
-            <Button onClick={() => navigate('/login')} $secondry>
+            <Button type="button" onClick={() => navigate('/login')} $secondry>
               Login
             </Button>
           </FormBottomR>

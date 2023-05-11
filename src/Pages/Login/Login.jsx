@@ -77,8 +77,10 @@ function Login({ placeholder, name }) {
           {error && <Ptag>Error...</Ptag>}
         </LogoHolder>
         <ButtonHolder>
-          <Button onClick={() => navigate('/register')}>Sign Up</Button>
-          <Button onClick={() => navigate('/')} $primary>
+          <Button type="button" onClick={() => navigate('/register')}>
+            Sign Up
+          </Button>
+          <Button type="button" onClick={() => navigate('/')} $primary>
             Home
           </Button>
         </ButtonHolder>
@@ -108,7 +110,11 @@ function Login({ placeholder, name }) {
           </OnclickBtn>
           <FormBottomR>
             <Ptag $normal>No Account </Ptag>
-            <Button onClick={() => navigate('/register')} $secondry>
+            <Button
+              type="button"
+              onClick={() => navigate('/register')}
+              $secondry
+            >
               Sign Up
             </Button>
           </FormBottomR>
