@@ -14,6 +14,7 @@ import {
   Button,
   Ptag,
   ShortUrl,
+  LinkPage,
   ShortLogo,
 } from '../../components/Atoms/Atoms';
 import {
@@ -109,14 +110,10 @@ function Login({ placeholder, name }) {
             Sign In
           </OnclickBtn>
           <FormBottomR>
-            <Ptag $normal>No Account </Ptag>
-            <Button
-              type="button"
-              onClick={() => navigate('/register')}
-              $secondry
-            >
-              Sign Up
-            </Button>
+            <Ptag $normal>
+              No Account{' '}
+              <LinkPage onClick={() => navigate('/register')}>Sign Up</LinkPage>{' '}
+            </Ptag>
           </FormBottomR>
         </Form>
       </FormSec>

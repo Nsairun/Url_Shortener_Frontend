@@ -135,7 +135,10 @@ function UserPage({ currentUser, userUrls }) {
               {APP_NAME + urldata.short_url}
             </UrlTxt>
             <CardBottom>
-              <ViewIcon onClick={() => viewUrlStats(urldata)} />
+              <ViewIcon
+                title="view url stats"
+                onClick={() => viewUrlStats(urldata)}
+              />
               <UrlTxt $secondry>
                 {new Date(urldata.createdAt).toLocaleTimeString()}
               </UrlTxt>
@@ -143,6 +146,7 @@ function UserPage({ currentUser, userUrls }) {
                 <CopyIconCopied />
               ) : (
                 <CopyIcon
+                  title="copy url"
                   onClick={() => {
                     copyText(`${SHORT_BASE_URL}${urldata.short_url}`);
                     displayAlert('link copied');
@@ -150,6 +154,7 @@ function UserPage({ currentUser, userUrls }) {
                 />
               )}
               <DeleteIcon
+                title="delete url"
                 onClick={() => setDelInfo({ see: true, info: urldata.id })}
               />
             </CardBottom>

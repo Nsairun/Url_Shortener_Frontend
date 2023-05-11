@@ -73,6 +73,9 @@ function HomePage() {
           <Join $primary>Made Free</Join>
         </JoinHolder>
         <Ptag>Shorten your long URL in the field below</Ptag>
+        <Ptag>
+          Copy your shortened link by clicking the icon <CopyIcon />
+        </Ptag>
         <LongUrlField onSubmit={handleSubmit}>
           <InputField
             placeholder="Enter Long_Url"
@@ -85,18 +88,19 @@ function HomePage() {
       </MainHolder>
       <UrlHolder>
         {urls?.map((urldata) => (
-          <UrlCard>
+          <UrlCard key={urldata.short_url}>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
               {APP_NAME + urldata.short_url}
             </UrlTxt>
             <CardBottom>
-              <ViewIcon />
+              <ViewIcon title="signup  to view url stats" />
               <UrlTxt $secondry>created at {urldata.createdAt} </UrlTxt>
               {copy ? (
                 <CopyIconCopied />
               ) : (
                 <CopyIcon
+                  title="copy url"
                   onClick={() => {
                     copyText(`${SHORT_BASE_URL}${urldata.short_url}`);
                     displayAlert('link copied');
