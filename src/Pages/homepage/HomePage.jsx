@@ -97,6 +97,7 @@ function HomePage() {
                 <CopyIconCopied />
               ) : (
                 <CopyIcon
+                  title="copy url"
                   onClick={() => {
                     copyText(`${SHORT_BASE_URL}${urldata.short_url}`);
                     displayAlert('link copied');

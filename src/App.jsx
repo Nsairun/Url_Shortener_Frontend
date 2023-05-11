@@ -78,7 +78,7 @@ function App() {
 
   return (
     <MyContext.Provider
-      value={{ setPhrase, phrase, copy, urls, handleSubmit, copyText }}
+      value={{ setPhrase, phrase, copy, urls, handleSubmit, copyText, setUrls }}
     >
       <div className="App">
         {alertMsg.show && <AlertComponet />}

@@ -92,7 +92,7 @@ function UserPage({ currentUser, userUrls }) {
   const deleteUrl = async (id) => {
     await deleteOneUrl(id);
     removeFromSession(id);
-    window.location.reload(true);
+    // window.location.reload(true);
   };
 
   const viewUrlStats = (url) => {
@@ -147,6 +147,7 @@ function UserPage({ currentUser, userUrls }) {
                 <CopyIconCopied />
               ) : (
                 <CopyIcon
+                  title="copy url"
                   onClick={() => {
                     copyText(`${SHORT_BASE_URL}${urldata.short_url}`);
                     displayAlert('link copied');
@@ -154,6 +155,7 @@ function UserPage({ currentUser, userUrls }) {
                 />
               )}
               <DeleteIcon
+                title="delete url"
                 onClick={() => setDelInfo({ see: true, info: urldata.id })}
               />
             </CardBottom>
