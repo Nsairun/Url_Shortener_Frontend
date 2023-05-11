@@ -37,6 +37,7 @@ import AuthGuard from '../../components/AuthGuard/AuthGuard';
 import { deleteOneUrl } from '../../api/urlauth';
 import { APP_NAME, SHORT_BASE_URL } from '../../constant';
 import useAlert from '../../components/Custom/UseAlert';
+import { removeFromSession } from '../../utils';
 
 const User = styled.div`
   display: flex;
@@ -88,6 +89,7 @@ function UserPage({ currentUser, userUrls }) {
 
   const deleteUrl = async (id) => {
     await deleteOneUrl(id);
+    removeFromSession(id);
     window.location.reload(true);
   };
 
