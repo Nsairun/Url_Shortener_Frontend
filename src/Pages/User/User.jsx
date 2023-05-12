@@ -101,6 +101,11 @@ function UserPage({ currentUser, userUrls }) {
   };
 
   useEffect(() => {
+    const lgi = +sessionStorage.getItem('lgi');
+    if (!lgi) {
+      sessionStorage.setItem('lgi', 1);
+    }
+
     setCopied(() => {
       const holder = {};
       userUrls.forEach((urlObj) => {

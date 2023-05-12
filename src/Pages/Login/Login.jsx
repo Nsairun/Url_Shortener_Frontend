@@ -58,7 +58,7 @@ function Login() {
     try {
       const { data } = await login(user.email_address, user.password);
       saveToken(data.token);
-      navigate('/user');
+      navigate('/user', { replace: true });
     } catch {
       setShow((prev) => ({ ...prev, err: 'Invalid username or password' }));
     } finally {

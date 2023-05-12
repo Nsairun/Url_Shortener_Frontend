@@ -21,9 +21,11 @@ export default function AuthGuard(Component) {
             return;
           }
           sessionStorage.removeItem('userUrls');
+
           saveToSession(userUrls);
 
           setUserData({ user, userUrls });
+
           setUrls(userUrls);
         })
         .catch(() => {

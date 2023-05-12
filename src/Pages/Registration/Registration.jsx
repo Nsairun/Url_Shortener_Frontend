@@ -52,7 +52,7 @@ function Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setShow((prev) => ({ ...prev, loading: true }));
+    setShow(() => ({ err: false, loading: true, erMsg: false }));
     const { target } = e;
     const userData = {
       user_name: target.username.value,
@@ -62,7 +62,7 @@ function Registration() {
     };
 
     if (userData.password !== userData.confirmpassword) {
-      setShow((prev) => ({ ...prev, err: true }));
+      setShow((prev) => ({ err: true, loading: false }));
       setTimeout(() => {
         setShow((prev) => ({ ...prev, err: false }));
       }, 2500);
@@ -70,12 +70,19 @@ function Registration() {
       return;
     }
 
-    await register(userData).then(() =>
-      login(userData.email_address, userData.password)
-        .then(({ data }) => saveToken(data.token))
-        .then(() => navigate('/user'))
-        .finally(() => setShow((prev) => ({ ...prev, loading: false })))
-    );
+    await register(userData)
+      .then(() =>
+        login(userData.email_address, userData.password).then(({ data }) => {
+          saveToken(data.token);
+          navigate('/user');
+        })
+      )
+      .catch(() =>
+        setShow((prev) => ({ ...prev, erMsg: 'COULD_N0T_CREATE_USER' }))
+      )
+      .finally(() =>
+        setShow((prev) => ({ ...prev, err: false, loading: false }))
+      );
   };
 
   return (
@@ -101,6 +108,7 @@ function Registration() {
           <Join $primary>Make It Short!</Join>
         </JoinHolder>
         {show.loading && <LoadingP>loading...</LoadingP>}
+        {show.erMsg && <Ptag $error>{show.erMsg}</Ptag>}
         <Label>UserName</Label>
         <InputField placeholder="Enter Username" name="username" required />
         <Label>Email</Label>

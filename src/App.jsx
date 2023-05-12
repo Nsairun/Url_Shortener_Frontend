@@ -4,7 +4,7 @@
 /* eslint-disable import/no-named-as-default-member */
 /* eslint-disable prettier/prettier */
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import validUrl from 'valid-url';
 import { customAlphabet } from 'nanoid';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -23,14 +23,11 @@ function App() {
   const [copy, setCopied] = useState({});
   const [phrase, setPhrase] = useState(false);
   const { AlertComponet, displayAlert, alertMsg } = useAlert();
+
   const nanoId = customAlphabet(
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
     6
   );
-
-  useEffect(() => {
-    setUrls(() => [...(JSON.parse(sessionStorage.getItem('userUrls')) || [])]);
-  }, []);
 
   const copyText = (textToCopy, shorturl) => {
     setCopied((prev) => {

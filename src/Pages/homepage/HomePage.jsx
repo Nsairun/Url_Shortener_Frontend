@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-console */
 import React, { useContext } from 'react';
@@ -37,6 +38,7 @@ import {
 import MyContext from '../../context';
 import { APP_NAME, SHORT_BASE_URL } from '../../constant';
 import useAlert from '../../components/Custom/UseAlert';
+import HomeGaurd from '../../components/AuthGuard/HomeGaurd';
 
 const Home = styled.div`
   display: flex;
@@ -47,8 +49,8 @@ const Home = styled.div`
   position: relative;
 `;
 
-function HomePage() {
-  const { urls, handleSubmit, copy, copyText, setPhrase, phrase } =
+function HomePage({ urls }) {
+  const { handleSubmit, copy, copyText, setPhrase, phrase } =
     useContext(MyContext);
   const { AlertComponet, displayAlert, alertMsg } = useAlert();
   const navigate = useNavigate();
@@ -140,4 +142,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default HomeGaurd(HomePage);
