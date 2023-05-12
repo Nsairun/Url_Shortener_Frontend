@@ -1,6 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';

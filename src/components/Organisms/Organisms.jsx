@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/prefer-default-export */
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import React from 'react';
 import { SocialF, SocialT, ShortLogo, ShortUrl, Ptag } from '../Atoms/Atoms';
 import { FooterL, FooterR, LogoHolder } from '../Molecules/Molecules';

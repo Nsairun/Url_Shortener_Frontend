@@ -1,7 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -62,7 +58,7 @@ function Registration() {
     };
 
     if (userData.password !== userData.confirmpassword) {
-      setShow((prev) => ({ err: true, loading: false }));
+      setShow(() => ({ err: true, loading: false }));
       setTimeout(() => {
         setShow((prev) => ({ ...prev, err: false }));
       }, 2500);

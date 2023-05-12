@@ -1,5 +1,3 @@
-/* eslint-disable no-lone-blocks */
-/* eslint-disable import/prefer-default-export */
 import styled, { css } from 'styled-components';
 import { FaFacebookF, FaTwitter, FaCopy } from 'react-icons/fa';
 import { BiCodeCurly } from 'react-icons/bi';
