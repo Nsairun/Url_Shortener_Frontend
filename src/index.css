@@ -49,3 +49,12 @@ h1 {
 p {
   font-family: 'Roboto', sans-serif;
 }
+
+@keyframes LoadingAnime {
+  from {
+    color: #ff4500;
+  }
+  to {
+    color: #4682b4;
+  }
+}

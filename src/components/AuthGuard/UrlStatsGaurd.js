@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentUser, getUrlVisitors } from '../../api/auth';
-import { SyldLoadingP } from '../Atoms/Atoms';
+import { AuthLoadinP } from '../Atoms/Atoms';
 
 export default function UrlStatsGaurd(Component) {
   function Guard(props) {
@@ -32,7 +32,7 @@ export default function UrlStatsGaurd(Component) {
     return data.activeUser ? (
       <Component {...props} visitors={data.visitors} />
     ) : (
-      <SyldLoadingP>loading...</SyldLoadingP>
+      <AuthLoadinP>loading...</AuthLoadinP>
     );
   }
   return Guard;

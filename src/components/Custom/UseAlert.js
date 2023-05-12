@@ -54,7 +54,7 @@ const StyledAlertMessage = styled.div`
 `;
 
 const useAlert = () => {
-  const [alertMsg, setAlertMsg] = useState({
+  const [myAlert, setMyAlert] = useState({
     message: '',
     show: false,
   });
@@ -62,20 +62,20 @@ const useAlert = () => {
   function AlertComponet() {
     return (
       <StyledAlertMessage>
-        <p>{alertMsg.message}</p>
+        <p>{myAlert.message}</p>
       </StyledAlertMessage>
     );
   }
 
   const displayAlert = (msg) => {
-    setAlertMsg(() => ({ message: msg, show: true }));
+    setMyAlert(() => ({ message: msg, show: true }));
 
     setTimeout(() => {
-      setAlertMsg(() => ({ message: '', show: false }));
+      setMyAlert(() => ({ message: '', show: false }));
     }, 1800);
   };
 
-  return { AlertComponet, displayAlert, alertMsg };
+  return { AlertComponet, displayAlert, myAlert };
 };
 
 export default useAlert;

@@ -1,12 +1,10 @@
-/* eslint-disable no-lone-blocks */
-/* eslint-disable import/prefer-default-export */
 import styled, { css } from 'styled-components';
 import { FaFacebookF, FaTwitter, FaCopy } from 'react-icons/fa';
 import { BiCodeCurly } from 'react-icons/bi';
 import { AiOutlineEye, AiOutlineCopy } from 'react-icons/ai';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
-export const SyldLoadingP = styled.p`
+export const AuthLoadinP = styled.p`
   height: 100vh;
   width: 100vw;
   color: #000;
@@ -16,13 +14,21 @@ export const SyldLoadingP = styled.p`
   font-size: 18px;
   letter-spacing: 3px;
 
-  @keyframes LoadingAnime {
-    from {
-      color: orangered;
-    }
-    to {
-      color: steelblue;
-    }
+  animation: LoadingAnime;
+  animation-duration: 2000ms;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+`;
+
+export const LoadingP = styled.p`
+  font-size: 17px;
+  align-self: left;
+  max-width: 600px;
+  margin: 10px 0 20px;
+  letter-spacing: 2px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 15px;
   }
 
   animation: LoadingAnime;
@@ -276,6 +282,13 @@ export const Ptag = styled.p`
       color: black;
       margin-bottom: 0;
     `};
+  ${(props) =>
+    props.$error &&
+    css`
+      color: #ff4500;
+      margin: 10px 0 20px;
+    `}
+
   @media only screen and (max-width: 768px) {
     font-size: 14px;
   }
@@ -312,7 +325,7 @@ export const OnclickBtn = styled.button`
   border: none;
   font-size: 16px;
   width: 50%;
-  padding: 0.5em 1em;
+  padding: 0.5rem 1rem;
   max-width: 100%;
   &:hover {
     background: #0566a2;
@@ -320,18 +333,23 @@ export const OnclickBtn = styled.button`
     direction: initial;
     transition: 0.5s ease-in-out;
   }
+
   ${(props) =>
     props.$secondry &&
     css`
       width: 100%;
     `}
+
   @media only screen and (max-width: 768px) {
-    padding: 6px 10px;
-    font-size: 14px;
+    &:hover {
+      background-color: #009cff;
+      color: #fff;
+      direction: initial;
+    }
   }
-  @media only screen and (max-width: 380px) {
-    padding: 3px 6px;
-    font-size: 12px;
+
+  @media only screen and (max-width: 450px) {
+    font-size: 14px;
   }
 `;
 

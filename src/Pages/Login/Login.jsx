@@ -1,6 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -16,6 +13,7 @@ import {
   ShortUrl,
   LinkPage,
   ShortLogo,
+  LoadingP,
 } from '../../components/Atoms/Atoms';
 import {
   JoinHolder,
@@ -42,9 +40,8 @@ const FormSec = styled.div`
   margin: auto;
 `;
 
-function Login({ placeholder, name }) {
-  const [isLoading, setIsloading] = useState(false);
-  const [error, setError] = useState('');
+function Login() {
+  const [show, setShow] = useState({ err: false, loading: false });
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,18 +50,16 @@ function Login({ placeholder, name }) {
       email_address: target.email.value,
       password: target.password.value,
     };
-    setIsloading(true);
-    setError('');
+
+    setShow(() => ({ err: false, loading: true }));
     try {
       const { data } = await login(user.email_address, user.password);
       saveToken(data.token);
-      navigate('/user');
-    } catch (e) {
-      if (e?.response?.status === 401) {
-        setError('Invalid username or password');
-      }
+      navigate('/user', { replace: true });
+    } catch {
+      setShow((prev) => ({ ...prev, err: 'Invalid username or password' }));
     } finally {
-      setIsloading(false);
+      setShow((prev) => ({ ...prev, loading: false }));
     }
   };
 
@@ -74,8 +69,6 @@ function Login({ placeholder, name }) {
         <LogoHolder>
           <ShortLogo />
           <ShortUrl>ShorTY</ShortUrl>
-          {isLoading && <Ptag>Loading...</Ptag>}
-          {error && <Ptag>Error...</Ptag>}
         </LogoHolder>
         <ButtonHolder>
           <Button type="button" onClick={() => navigate('/register')}>
@@ -86,6 +79,7 @@ function Login({ placeholder, name }) {
           </Button>
         </ButtonHolder>
       </NavBar>
+
       <FormSec>
         <JoinHolder>
           <Join>Get</Join>
@@ -96,7 +90,10 @@ function Login({ placeholder, name }) {
           Hey buddy! Listen, login to your account now so that you can manage
           all your shorten links more succesfully.
         </Ptag>
+
         <Form>
+          {show.loading && <LoadingP>Loading...</LoadingP>}
+          {show.err && <Ptag $error> {show.err || 'Error...'}</Ptag>}
           <Label>Email</Label>
           <InputField placeholder="Enter EmailAdress" name="email" required />
           <Label>Password</Label>

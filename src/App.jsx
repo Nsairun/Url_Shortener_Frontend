@@ -1,10 +1,6 @@
-/* eslint-disable no-console */
 /* eslint-disable react/jsx-no-constructed-context-values */
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable import/no-named-as-default-member */
-/* eslint-disable prettier/prettier */
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import validUrl from 'valid-url';
 import { customAlphabet } from 'nanoid';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -22,15 +18,12 @@ function App() {
   const [urls, setUrls] = useState([]);
   const [copy, setCopied] = useState({});
   const [phrase, setPhrase] = useState(false);
-  const { AlertComponet, displayAlert, alertMsg } = useAlert();
+  const { AlertComponet, displayAlert, myAlert } = useAlert();
+
   const nanoId = customAlphabet(
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
     6
   );
-
-  useEffect(() => {
-    setUrls(() => [...(JSON.parse(sessionStorage.getItem('userUrls')) || [])]);
-  }, []);
 
   const copyText = (textToCopy, shorturl) => {
     setCopied((prev) => {
@@ -67,6 +60,11 @@ function App() {
       return;
     }
 
+    if (!validUrl.isUri(target.long_url.value)) {
+      displayAlert(`NOT_A_VALID_URL`);
+      return;
+    }
+
     const data = {
       long_url: target.long_url.value,
       short_url: nanoId(),
@@ -75,12 +73,6 @@ function App() {
     };
 
     saveToSession([data]);
-
-    const longUrl = data.long_url;
-    if (!validUrl.isUri(longUrl)) {
-      console.log(`NOT_A_VALID_URL`);
-      return;
-    }
 
     registerUrl(data);
     setUrls((prev) => [...prev, data]);
@@ -100,7 +92,7 @@ function App() {
       }}
     >
       <div className="App">
-        {alertMsg.show && <AlertComponet />}
+        {myAlert.show && <AlertComponet />}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />

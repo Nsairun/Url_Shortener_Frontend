@@ -79,7 +79,7 @@ function UserPage({ currentUser, userUrls }) {
   const [delInfo, setDelInfo] = useState({ see: false, info: '' });
   const { handleSubmit, copy, setCopied, copyText } = useContext(MyContext);
 
-  const { AlertComponet, displayAlert, alertMsg } = useAlert();
+  const { AlertComponet, displayAlert, myAlert } = useAlert();
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -101,6 +101,11 @@ function UserPage({ currentUser, userUrls }) {
   };
 
   useEffect(() => {
+    const lgi = +sessionStorage.getItem('lgi');
+    if (!lgi) {
+      sessionStorage.setItem('lgi', 1);
+    }
+
     setCopied(() => {
       const holder = {};
       userUrls.forEach((urlObj) => {
@@ -113,7 +118,7 @@ function UserPage({ currentUser, userUrls }) {
 
   return (
     <User>
-      {alertMsg.show && <AlertComponet />}
+      {myAlert.show && <AlertComponet />}
       <NavBar>
         <LogoHolder>
           <ShortLogo />
@@ -144,7 +149,7 @@ function UserPage({ currentUser, userUrls }) {
       </MainHolder>
       <UrlHolder>
         {userUrls?.map((urldata) => (
-          <UrlCard key={urldata.id}>
+          <UrlCard key={urldata.short_url}>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
               {APP_NAME + urldata.short_url}

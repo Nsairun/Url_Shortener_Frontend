@@ -1,7 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -16,6 +12,7 @@ import {
   OnclickBtn,
   LinkPage,
   Ptag,
+  LoadingP,
 } from '../../components/Atoms/Atoms';
 import {
   LogoHolder,
@@ -45,12 +42,13 @@ const ErrorTag = styled.div`
   justify-content: center;
 `;
 
-function Registration({ placeholder, name }) {
+function Registration() {
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState({ err: false, loading: false });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShow(() => ({ err: false, loading: true, erMsg: false }));
     const { target } = e;
     const userData = {
       user_name: target.username.value,
@@ -60,19 +58,27 @@ function Registration({ placeholder, name }) {
     };
 
     if (userData.password !== userData.confirmpassword) {
-      setShow(true);
+      setShow(() => ({ err: true, loading: false }));
       setTimeout(() => {
-        setShow(false);
+        setShow((prev) => ({ ...prev, err: false }));
       }, 2500);
 
       return;
     }
 
-    await register(userData).then(() =>
-      login(userData.email_address, userData.password)
-        .then(({ data }) => saveToken(data.token))
-        .then(() => navigate('/user'))
-    );
+    await register(userData)
+      .then(() =>
+        login(userData.email_address, userData.password).then(({ data }) => {
+          saveToken(data.token);
+          navigate('/user');
+        })
+      )
+      .catch(() =>
+        setShow((prev) => ({ ...prev, erMsg: 'COULD_N0T_CREATE_USER' }))
+      )
+      .finally(() =>
+        setShow((prev) => ({ ...prev, err: false, loading: false }))
+      );
   };
 
   return (
@@ -91,12 +97,14 @@ function Registration({ placeholder, name }) {
           </Button>
         </ButtonHolder>
       </NavBar>
+
       <Form onSubmit={handleSubmit}>
         <JoinHolder>
           <Join>Join ShorTY,</Join>
           <Join $primary>Make It Short!</Join>
         </JoinHolder>
-        <Ptag>Don't think about it, do it!</Ptag>
+        {show.loading && <LoadingP>loading...</LoadingP>}
+        {show.erMsg && <Ptag $error>{show.erMsg}</Ptag>}
         <Label>UserName</Label>
         <InputField placeholder="Enter Username" name="username" required />
         <Label>Email</Label>
@@ -121,7 +129,7 @@ function Registration({ placeholder, name }) {
             />
           </PassHolder>
         </PassConfirm>
-        {show && <ErrorTag>password confirmation failed</ErrorTag>}
+        {show.err && <ErrorTag>password confirmation failed</ErrorTag>}
         <FormBottom>
           <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>
