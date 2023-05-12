@@ -81,7 +81,7 @@ export const PhraseHolder = styled.div`
   background-color: #1f272e;
   right: 15px;
   bottom: 0;
-  padding: 15px;
+  padding: 23px 15px;
   margin: 0 0 100px 0;
   z-index: 1;
   position: fixed;

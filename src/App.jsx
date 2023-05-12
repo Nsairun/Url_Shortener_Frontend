@@ -20,7 +20,7 @@ import { existInSession, saveToSession } from './utils';
 
 function App() {
   const [urls, setUrls] = useState([]);
-  const [copy, setCopied] = useState(false);
+  const [copy, setCopied] = useState({});
   const [phrase, setPhrase] = useState(false);
   const { AlertComponet, displayAlert, alertMsg } = useAlert();
   const nanoId = customAlphabet(
@@ -32,13 +32,23 @@ function App() {
     setUrls(() => [...(JSON.parse(sessionStorage.getItem('userUrls')) || [])]);
   }, []);
 
-  const copyText = (textToCopy) => {
-    setCopied(true);
+  const copyText = (textToCopy, shorturl) => {
+    setCopied((prev) => {
+      const holder = prev;
+      holder[`${shorturl}`] = true;
+      return { ...holder };
+    });
     navigator.clipboard.writeText(textToCopy);
+
     setPhrase(true);
+
     setTimeout(() => {
-      setCopied(false);
-    }, 3000);
+      setCopied((prev) => {
+        const holder = prev;
+        holder[`${shorturl}`] = false;
+        return { ...holder };
+      });
+    }, 2000);
   };
 
   const handleSubmit = (e, UserId = null) => {
@@ -78,7 +88,16 @@ function App() {
 
   return (
     <MyContext.Provider
-      value={{ setPhrase, phrase, copy, urls, handleSubmit, copyText, setUrls }}
+      value={{
+        setPhrase,
+        phrase,
+        copy,
+        setCopied,
+        urls,
+        handleSubmit,
+        copyText,
+        setUrls,
+      }}
     >
       <div className="App">
         {alertMsg.show && <AlertComponet />}
