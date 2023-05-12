@@ -72,7 +72,7 @@ const useAlert = () => {
 
     setTimeout(() => {
       setAlertMsg(() => ({ message: '', show: false }));
-    }, 2000);
+    }, 1800);
   };
 
   return { AlertComponet, displayAlert, alertMsg };

@@ -12,7 +12,7 @@ function UrlStats({ visitors }) {
 
       <div className="urlInfo">
         <p className="clicks">
-          Total visits {JSON.parse(sessionStorage.getItem('currentUrl')).clicks}
+          Total clicks {JSON.parse(sessionStorage.getItem('currentUrl')).clicks}
         </p>
         {visitors.length >= 1 ? (
           <table>

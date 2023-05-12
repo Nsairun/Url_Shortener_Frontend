@@ -95,14 +95,17 @@ function HomePage() {
             </UrlTxt>
             <CardBottom>
               <ViewIcon title="signup  to view url stats" />
-              <UrlTxt $secondry>created at {urldata.createdAt} </UrlTxt>
-              {copy ? (
+              <UrlTxt $secondry>created at {urldata.createdAt}</UrlTxt>
+              {copy[`${urldata.short_url}`] ? (
                 <CopyIconCopied />
               ) : (
                 <CopyIcon
                   title="copy url"
                   onClick={() => {
-                    copyText(`${SHORT_BASE_URL}${urldata.short_url}`);
+                    copyText(
+                      `${SHORT_BASE_URL}${urldata.short_url}`,
+                      urldata.short_url
+                    );
                     displayAlert('link copied');
                   }}
                 />
@@ -115,10 +118,10 @@ function HomePage() {
       {phrase && (
         <PhraseHolder>
           <PharseTxt>
-            Would you like to keep track of clicks on your Url?
+            Would you like to keep track of each click on your Url?
           </PharseTxt>
           <PharseTxt $primary>
-            Its an optional something fam!! Dont think too much about it.
+            know how many people have used it and where. make a choice!!
           </PharseTxt>
           <PharseBtn
             onClick={() => {

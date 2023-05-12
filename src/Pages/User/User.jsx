@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -77,7 +77,7 @@ const DeleteForm = styled.div`
 function UserPage({ currentUser, userUrls }) {
   const navigate = useNavigate();
   const [delInfo, setDelInfo] = useState({ see: false, info: '' });
-  const { handleSubmit, copy, copyText } = useContext(MyContext);
+  const { handleSubmit, copy, setCopied, copyText } = useContext(MyContext);
 
   const { AlertComponet, displayAlert, alertMsg } = useAlert();
 
@@ -99,6 +99,17 @@ function UserPage({ currentUser, userUrls }) {
     sessionStorage.setItem('currentUrl', JSON.stringify(url));
     navigate('/stats');
   };
+
+  useEffect(() => {
+    setCopied(() => {
+      const holder = {};
+      userUrls.forEach((urlObj) => {
+        holder[`${urlObj.id}`] = false;
+      });
+
+      return holder;
+    });
+  }, []);
 
   return (
     <User>
@@ -144,15 +155,18 @@ function UserPage({ currentUser, userUrls }) {
                 onClick={() => viewUrlStats(urldata)}
               />
               <UrlTxt $secondry>
-                {new Date(urldata.createdAt).toLocaleTimeString()}
+                created at {new Date(urldata.createdAt).toLocaleTimeString()}
               </UrlTxt>
-              {copy ? (
+              {copy[`${urldata.short_url}`] ? (
                 <CopyIconCopied />
               ) : (
                 <CopyIcon
                   title="copy url"
                   onClick={() => {
-                    copyText(`${SHORT_BASE_URL}${urldata.short_url}`);
+                    copyText(
+                      `${SHORT_BASE_URL}${urldata.short_url}`,
+                      urldata.short_url
+                    );
                     displayAlert('link copied');
                   }}
                 />

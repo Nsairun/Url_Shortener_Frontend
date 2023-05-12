@@ -163,7 +163,7 @@ export const Button = styled.button`
     background: #fff;
     color: #000;
     direction: rtl;
-    transition: 0.7s ease-in-out;
+    transition: 0.5s ease-in-out;
   }
   ${(props) =>
     props.$primary &&
@@ -174,7 +174,7 @@ export const Button = styled.button`
         background: #009cff;
         color: #fff;
         direction: initial;
-        transition: 0.7s ease-in-out;
+        transition: 0.5s ease-in-out;
       }
     `}
   ${(props) =>
@@ -318,7 +318,7 @@ export const OnclickBtn = styled.button`
     background: #0566a2;
     color: #fff;
     direction: initial;
-    transition: 0.7s ease-in-out;
+    transition: 0.5s ease-in-out;
   }
   ${(props) =>
     props.$secondry &&
@@ -339,7 +339,7 @@ export const PharseBtn = styled.button`
   padding: 15px 20px;
   color: #fff;
   font-size: 18px;
-  width: 30vw;
+  width: 97%;
   max-width: 250px;
   background-color: #009cff;
   font-weight: 500;
@@ -364,4 +364,13 @@ export const PharseTxt = styled.p`
       font-weight: 500;
       font-size: 18px;
     `}
+
+  @media only screen and (max-width: 768px) {
+    font-size: 20px;
+    ${(props) =>
+      props.$primary &&
+      css`
+        font-size: 14px;
+      `}
+  }
 `;
