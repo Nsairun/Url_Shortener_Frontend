@@ -60,6 +60,11 @@ function App() {
       return;
     }
 
+    if (!validUrl.isUri(target.long_url.value)) {
+      displayAlert(`NOT_A_VALID_URL`);
+      return;
+    }
+
     const data = {
       long_url: target.long_url.value,
       short_url: nanoId(),
@@ -68,12 +73,6 @@ function App() {
     };
 
     saveToSession([data]);
-
-    const longUrl = data.long_url;
-    if (!validUrl.isUri(longUrl)) {
-      displayAlert(`NOT_A_VALID_URL`);
-      return;
-    }
 
     registerUrl(data);
     setUrls((prev) => [...prev, data]);
