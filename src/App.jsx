@@ -48,7 +48,7 @@ function App() {
         holder[`${shorturl}`] = false;
         return { ...holder };
       });
-    }, 2000);
+    }, 3000);
   };
 
   const handleSubmit = (e, UserId = null) => {
