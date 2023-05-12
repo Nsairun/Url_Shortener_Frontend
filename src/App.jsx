@@ -1,8 +1,4 @@
-/* eslint-disable no-console */
 /* eslint-disable react/jsx-no-constructed-context-values */
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable import/no-named-as-default-member */
-/* eslint-disable prettier/prettier */
 import './App.css';
 import React, { useState } from 'react';
 import validUrl from 'valid-url';
@@ -22,7 +18,7 @@ function App() {
   const [urls, setUrls] = useState([]);
   const [copy, setCopied] = useState({});
   const [phrase, setPhrase] = useState(false);
-  const { AlertComponet, displayAlert, alertMsg } = useAlert();
+  const { AlertComponet, displayAlert, myAlert } = useAlert();
 
   const nanoId = customAlphabet(
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
@@ -75,7 +71,7 @@ function App() {
 
     const longUrl = data.long_url;
     if (!validUrl.isUri(longUrl)) {
-      console.log(`NOT_A_VALID_URL`);
+      displayAlert(`NOT_A_VALID_URL`);
       return;
     }
 
@@ -97,7 +93,7 @@ function App() {
       }}
     >
       <div className="App">
-        {alertMsg.show && <AlertComponet />}
+        {myAlert.show && <AlertComponet />}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />

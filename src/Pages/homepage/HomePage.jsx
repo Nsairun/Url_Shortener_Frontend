@@ -52,11 +52,11 @@ const Home = styled.div`
 function HomePage({ urls }) {
   const { handleSubmit, copy, copyText, setPhrase, phrase } =
     useContext(MyContext);
-  const { AlertComponet, displayAlert, alertMsg } = useAlert();
+  const { AlertComponet, displayAlert, myAlert } = useAlert();
   const navigate = useNavigate();
   return (
     <Home>
-      {alertMsg.show && <AlertComponet />}
+      {myAlert.show && <AlertComponet />}
       <NavBar>
         <LogoHolder>
           <ShortLogo />
