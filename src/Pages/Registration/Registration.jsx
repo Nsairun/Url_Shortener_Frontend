@@ -16,6 +16,7 @@ import {
   OnclickBtn,
   LinkPage,
   Ptag,
+  LoadingP,
 } from '../../components/Atoms/Atoms';
 import {
   LogoHolder,
@@ -45,12 +46,13 @@ const ErrorTag = styled.div`
   justify-content: center;
 `;
 
-function Registration({ placeholder, name }) {
+function Registration() {
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState({ err: false, loading: false });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setShow((prev) => ({ ...prev, loading: true }));
     const { target } = e;
     const userData = {
       user_name: target.username.value,
@@ -60,9 +62,9 @@ function Registration({ placeholder, name }) {
     };
 
     if (userData.password !== userData.confirmpassword) {
-      setShow(true);
+      setShow((prev) => ({ ...prev, err: true }));
       setTimeout(() => {
-        setShow(false);
+        setShow((prev) => ({ ...prev, err: false }));
       }, 2500);
 
       return;
@@ -72,6 +74,7 @@ function Registration({ placeholder, name }) {
       login(userData.email_address, userData.password)
         .then(({ data }) => saveToken(data.token))
         .then(() => navigate('/user'))
+        .finally(() => setShow((prev) => ({ ...prev, loading: false })))
     );
   };
 
@@ -91,12 +94,13 @@ function Registration({ placeholder, name }) {
           </Button>
         </ButtonHolder>
       </NavBar>
+
       <Form onSubmit={handleSubmit}>
         <JoinHolder>
           <Join>Join ShorTY,</Join>
           <Join $primary>Make It Short!</Join>
         </JoinHolder>
-        <Ptag>Don't think about it, do it!</Ptag>
+        {show.loading && <LoadingP>loading...</LoadingP>}
         <Label>UserName</Label>
         <InputField placeholder="Enter Username" name="username" required />
         <Label>Email</Label>
@@ -121,7 +125,7 @@ function Registration({ placeholder, name }) {
             />
           </PassHolder>
         </PassConfirm>
-        {show && <ErrorTag>password confirmation failed</ErrorTag>}
+        {show.err && <ErrorTag>password confirmation failed</ErrorTag>}
         <FormBottom>
           <OnclickBtn type="submit">Create Account</OnclickBtn>
           <FormBottomR>

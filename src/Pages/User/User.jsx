@@ -144,7 +144,7 @@ function UserPage({ currentUser, userUrls }) {
       </MainHolder>
       <UrlHolder>
         {userUrls?.map((urldata) => (
-          <UrlCard key={urldata.id}>
+          <UrlCard key={urldata.short_url}>
             <UrlTxt>{urldata.long_url}</UrlTxt>
             <UrlTxt id="shorturl" $primary>
               {APP_NAME + urldata.short_url}

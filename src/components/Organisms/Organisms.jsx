@@ -28,14 +28,14 @@ export const Form = styled.form`
   gap: 15px;
   margin: auto;
   text-align: left;
-  padding: 10px 20px;
+  padding: 15px 20px 25px;
   border-radius: 10px;
   min-height: fit-content;
   background-color: #1f2937b1;
   max-width: 600px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 600px) {
     gap: 10px;
-    padding: 8px 15px;
+    padding: 15px 10px 25px;
   }
 `;
 

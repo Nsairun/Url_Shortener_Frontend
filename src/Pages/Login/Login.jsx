@@ -16,6 +16,7 @@ import {
   ShortUrl,
   LinkPage,
   ShortLogo,
+  LoadingP,
 } from '../../components/Atoms/Atoms';
 import {
   JoinHolder,
@@ -42,7 +43,7 @@ const FormSec = styled.div`
   margin: auto;
 `;
 
-function Login({ placeholder, name }) {
+function Login() {
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ function Login({ placeholder, name }) {
         <LogoHolder>
           <ShortLogo />
           <ShortUrl>ShorTY</ShortUrl>
-          {isLoading && <Ptag>Loading...</Ptag>}
+          {isLoading && <LoadingP>Loading...</LoadingP>}
           {error && <Ptag>Error...</Ptag>}
         </LogoHolder>
         <ButtonHolder>
@@ -86,6 +87,7 @@ function Login({ placeholder, name }) {
           </Button>
         </ButtonHolder>
       </NavBar>
+
       <FormSec>
         <JoinHolder>
           <Join>Get</Join>
@@ -96,6 +98,7 @@ function Login({ placeholder, name }) {
           Hey buddy! Listen, login to your account now so that you can manage
           all your shorten links more succesfully.
         </Ptag>
+
         <Form>
           <Label>Email</Label>
           <InputField placeholder="Enter EmailAdress" name="email" required />

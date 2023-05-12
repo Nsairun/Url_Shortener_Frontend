@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentUser } from '../../api/auth';
 import { saveToSession } from '../../utils';
-import { SyldLoadingP } from '../Atoms/Atoms';
+import { AuthLoadinP } from '../Atoms/Atoms';
 import MyContext from '../../context';
 
 export default function AuthGuard(Component) {
@@ -34,7 +34,7 @@ export default function AuthGuard(Component) {
     return userData?.user?.user_name ? (
       <Component {...props} currentUser={userData.user} userUrls={urls} />
     ) : (
-      <SyldLoadingP>loading...</SyldLoadingP>
+      <AuthLoadinP>loading...</AuthLoadinP>
     );
   }
   return Guard;
