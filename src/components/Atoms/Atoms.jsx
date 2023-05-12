@@ -284,6 +284,13 @@ export const Ptag = styled.p`
       color: black;
       margin-bottom: 0;
     `};
+  ${(props) =>
+    props.$error &&
+    css`
+      color: #ff4500;
+      margin: 10px 0 20px;
+    `}
+
   @media only screen and (max-width: 768px) {
     font-size: 14px;
   }

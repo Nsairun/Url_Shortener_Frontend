@@ -44,8 +44,7 @@ const FormSec = styled.div`
 `;
 
 function Login() {
-  const [isLoading, setIsloading] = useState(false);
-  const [error, setError] = useState('');
+  const [show, setShow] = useState({ err: false, loading: false });
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,18 +53,16 @@ function Login() {
       email_address: target.email.value,
       password: target.password.value,
     };
-    setIsloading(true);
-    setError('');
+
+    setShow(() => ({ err: false, loading: true }));
     try {
       const { data } = await login(user.email_address, user.password);
       saveToken(data.token);
       navigate('/user');
-    } catch (e) {
-      if (e?.response?.status === 401) {
-        setError('Invalid username or password');
-      }
+    } catch {
+      setShow((prev) => ({ ...prev, err: 'Invalid username or password' }));
     } finally {
-      setIsloading(false);
+      setShow((prev) => ({ ...prev, loading: false }));
     }
   };
 
@@ -75,8 +72,6 @@ function Login() {
         <LogoHolder>
           <ShortLogo />
           <ShortUrl>ShorTY</ShortUrl>
-          {isLoading && <LoadingP>Loading...</LoadingP>}
-          {error && <Ptag>Error...</Ptag>}
         </LogoHolder>
         <ButtonHolder>
           <Button type="button" onClick={() => navigate('/register')}>
@@ -100,6 +95,8 @@ function Login() {
         </Ptag>
 
         <Form>
+          {show.loading && <LoadingP>Loading...</LoadingP>}
+          {show.err && <Ptag $error> {show.err || 'Error...'}</Ptag>}
           <Label>Email</Label>
           <InputField placeholder="Enter EmailAdress" name="email" required />
           <Label>Password</Label>
