@@ -44,11 +44,11 @@ function App() {
     }, 3000);
   };
 
-  const handleSubmit = (e, UserId = null) => {
+  const handleSubmit = async (e, UserId = null) => {
     e.preventDefault();
 
     const { target } = e;
-    if (target.long_url.value.lenght <= 0) {
+    if (target.long_url.value.length <= 0) {
       displayAlert('Please input a long url');
       return;
     }
@@ -72,10 +72,11 @@ function App() {
       UserId,
     };
 
-    saveToSession([data]);
-
-    registerUrl(data);
-    setUrls((prev) => [...prev, data]);
+    registerUrl(data).then(() => {
+      setUrls((prev) => [...prev, data]);
+      saveToSession([data]);
+      target.long_url.value = '';
+    });
   };
 
   return (

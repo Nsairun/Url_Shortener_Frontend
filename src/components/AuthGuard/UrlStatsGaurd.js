@@ -8,7 +8,7 @@ export default function UrlStatsGaurd(Component) {
     const [responseData, setResponseData] = useState(null);
 
     useEffect(() => {
-      const uri = +sessionStorage.getItem('uri');
+      const uri = sessionStorage.getItem('uri');
 
       getUrlVisitors(uri).then(({ data: { visitors, url } }) => {
         setResponseData({ visitors, url });

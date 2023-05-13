@@ -85,6 +85,7 @@ function UserPage({ currentUser, userUrls }) {
     localStorage.removeItem('token');
     sessionStorage.removeItem('userUrls');
     sessionStorage.removeItem('currentUrl');
+    sessionStorage.removeItem('uri');
     navigate('/', { replace: true });
     window.location.reload();
   };
@@ -157,7 +158,7 @@ function UserPage({ currentUser, userUrls }) {
             <CardBottom>
               <ViewIcon
                 title="view url stats"
-                onClick={() => viewUrlStats(urldata.id)}
+                onClick={() => viewUrlStats(urldata.id || urldata.short_url)}
               />
               <UrlTxt $secondry>
                 created at {new Date(urldata.createdAt).toLocaleTimeString()}

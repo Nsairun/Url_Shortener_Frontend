@@ -11,7 +11,7 @@ const StyledUrlStats = styled.div`
       display: flex;
       flex-direction: column;
       margin: 10px 0 25px;
-      padding: 10px;
+      padding: 10px 10px 6px;
       width: 100%;
 
       .long_short {
@@ -40,7 +40,8 @@ const StyledUrlStats = styled.div`
       .clicks {
         text-align: right;
         color: #ff621f;
-        margin: 10px 0 0;
+        margin: 5px 0 0;
+        line-height: 25px;
       }
     }
 

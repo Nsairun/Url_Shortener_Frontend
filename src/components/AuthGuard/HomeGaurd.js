@@ -11,6 +11,7 @@ export default function HomeGaurd(Component) {
         sessionStorage.removeItem('userUrls');
         sessionStorage.removeItem('currentUrl');
         sessionStorage.removeItem('lgi');
+        sessionStorage.removeItem('uri');
       }
 
       setUrls(() => [

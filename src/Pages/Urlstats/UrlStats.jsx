@@ -25,7 +25,17 @@ function UrlStats({ visitors, url }) {
               <MdShortcut /> <span>{SHORT_BASE_URL + url.short_url}</span>
             </p>
           </div>
-          <p className="clicks">Total clicks {url.clicks}</p>
+          <p className="clicks">
+            <span>
+              Created On:{' '}
+              {`${new Date(url.createdAt).toDateString()} - ${new Date(
+                url.createdAt
+              ).toLocaleTimeString()}`}
+            </span>
+            <br />
+            <span>total visitors {visitors.length}</span> <br />
+            <span>Total clicks {url.clicks}</span>
+          </p>
         </div>
 
         {visitors.length >= 1 ? (
