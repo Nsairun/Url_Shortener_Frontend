@@ -1,39 +1,28 @@
-/* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getCurrentUser, getUrlVisitors } from '../../api/auth';
+import { getUrlVisitors } from '../../api/auth';
 import { AuthLoadinP } from '../Atoms/Atoms';
 
 export default function UrlStatsGaurd(Component) {
-  function Guard(props) {
-    const [data, setData] = useState({ activeUser: false, visitors: [] });
+  return function Guard(props) {
+    const [responseData, setResponseData] = useState(null);
 
-    const navigate = useNavigate();
     useEffect(() => {
-      const sessionUrl = JSON.parse(sessionStorage.getItem('currentUrl'));
+      const uri = +sessionStorage.getItem('uri');
 
-      getCurrentUser()
-        .then(async ({ user }) => {
-          if (!user.user_name) {
-            navigate('/', { replace: true });
-            return;
-          }
-
-          await getUrlVisitors(+sessionUrl.id).then(({ data }) => {
-            setData({ activeUser: true, visitors: data });
-          });
-        })
-        .catch(() => {
-          navigate('/', { replace: true });
-        });
+      getUrlVisitors(uri).then(({ data: { visitors, url } }) => {
+        setResponseData({ visitors, url });
+      });
     }, []);
 
-    return data.activeUser ? (
-      <Component {...props} visitors={data.visitors} />
+    return responseData ? (
+      <Component
+        {...props}
+        visitors={responseData.visitors}
+        url={responseData.url}
+      />
     ) : (
-      <AuthLoadinP>loading...</AuthLoadinP>
+      <AuthLoadinP>getting data</AuthLoadinP>
     );
-  }
-  return Guard;
+  };
 }
