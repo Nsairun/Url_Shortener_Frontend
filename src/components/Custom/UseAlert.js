@@ -59,7 +59,7 @@ const useAlert = () => {
     show: false,
   });
 
-  function AlertComponet() {
+  function AlertComponent() {
     return (
       <StyledAlertMessage>
         <p>{myAlert.message}</p>
@@ -75,7 +75,7 @@ const useAlert = () => {
     }, 1800);
   };
 
-  return { AlertComponet, displayAlert, myAlert };
+  return { AlertComponent, displayAlert, myAlert };
 };
 
 export default useAlert;
