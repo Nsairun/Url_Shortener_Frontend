@@ -19,7 +19,7 @@ function UrlStats({ visitors, url }) {
         <div className="url_div">
           <div className="long_short">
             <p>
-              <TbLink /> <span>{url.long_url}</span>
+              <TbLink /> <span>{url?.long_url}</span>
             </p>
             <p>
               <MdShortcut /> <span>{SHORT_BASE_URL + url.short_url}</span>
@@ -28,17 +28,17 @@ function UrlStats({ visitors, url }) {
           <p className="clicks">
             <span>
               Created On:{' '}
-              {`${new Date(url.createdAt).toDateString()} - ${new Date(
-                url.createdAt
+              {`${new Date(url?.createdAt).toDateString()} - ${new Date(
+                url?.createdAt
               ).toLocaleTimeString()}`}
             </span>
             <br />
-            <span>total visitors {visitors.length}</span> <br />
-            <span>Total clicks {url.clicks}</span>
+            <span>total visitors {visitors?.length}</span> <br />
+            <span>Total clicks {url?.clicks}</span>
           </p>
         </div>
 
-        {visitors.length >= 1 ? (
+        {visitors?.length >= 1 ? (
           <table>
             <tr>
               <th>Location</th>
@@ -46,17 +46,17 @@ function UrlStats({ visitors, url }) {
               <th>First visit</th>
               <th>Newest visit</th>
             </tr>
-            {visitors.map((visitor) => (
+            {visitors?.map((visitor) => (
               <tr>
-                <td>{visitor.location}</td>
-                <td>{visitor.browser}</td>
+                <td>{visitor?.location}</td>
+                <td>{visitor?.browser}</td>
                 <td>
-                  {new Date(visitor.createdAt).toDateString()} <br />{' '}
-                  {new Date(visitor.createdAt).toLocaleTimeString()}
+                  {new Date(visitor?.createdAt).toDateString()} <br />{' '}
+                  {new Date(visitor?.createdAt).toLocaleTimeString()}
                 </td>
                 <td>
-                  {new Date(visitor.updatedAt).toDateString()} <br />{' '}
-                  {new Date(visitor.updatedAt).toLocaleTimeString()}
+                  {new Date(visitor?.updatedAt).toDateString()} <br />{' '}
+                  {new Date(visitor?.updatedAt).toLocaleTimeString()}
                 </td>
               </tr>
             ))}

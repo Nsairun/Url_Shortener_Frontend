@@ -50,11 +50,11 @@ const Home = styled.div`
 function HomePage({ urls }) {
   const { handleSubmit, copy, copyText, setPhrase, phrase } =
     useContext(MyContext);
-  const { AlertComponet, displayAlert, myAlert } = useAlert();
+  const { AlertComponent, displayAlert, myAlert } = useAlert();
   const navigate = useNavigate();
   return (
     <Home>
-      {myAlert.show && <AlertComponet />}
+      {myAlert.show && <AlertComponent />}
       <NavBar>
         <LogoHolder>
           <ShortLogo />
@@ -94,7 +94,10 @@ function HomePage({ urls }) {
               {APP_NAME + urldata.short_url}
             </UrlTxt>
             <CardBottom>
-              <ViewIcon title="signup  to view url stats" />
+              <ViewIcon
+                title="signup  to view url stats"
+                onClick={() => setPhrase(true)}
+              />
               <UrlTxt $secondry>created at {urldata.createdAt}</UrlTxt>
               {copy[`${urldata.short_url}`] ? (
                 <CopyIconCopied />

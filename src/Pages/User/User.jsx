@@ -79,7 +79,7 @@ function UserPage({ currentUser, userUrls }) {
   const [delInfo, setDelInfo] = useState({ see: false, info: '' });
   const { handleSubmit, copy, setCopied, copyText } = useContext(MyContext);
 
-  const { AlertComponet, displayAlert, myAlert } = useAlert();
+  const { AlertComponent, displayAlert, myAlert } = useAlert();
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -119,7 +119,7 @@ function UserPage({ currentUser, userUrls }) {
 
   return (
     <User>
-      {myAlert.show && <AlertComponet />}
+      {myAlert.show && <AlertComponent />}
       <NavBar>
         <LogoHolder>
           <ShortLogo />

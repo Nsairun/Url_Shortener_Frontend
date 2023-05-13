@@ -18,7 +18,7 @@ function App() {
   const [urls, setUrls] = useState([]);
   const [copy, setCopied] = useState({});
   const [phrase, setPhrase] = useState(false);
-  const { AlertComponet, displayAlert, myAlert } = useAlert();
+  const { AlertComponent, displayAlert, myAlert } = useAlert();
 
   const nanoId = customAlphabet(
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
@@ -93,7 +93,7 @@ function App() {
       }}
     >
       <div className="App">
-        {myAlert.show && <AlertComponet />}
+        {myAlert.show && <AlertComponent />}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
