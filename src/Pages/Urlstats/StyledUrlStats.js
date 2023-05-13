@@ -6,9 +6,43 @@ const StyledUrlStats = styled.div`
   padding: 15px Calc(5px + 1.5vw);
 
   .urlInfo {
-    .clicks {
-      text-align: right;
-      color: #ff621f;
+    .url_div {
+      background-color: #1b1c2d70;
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0 25px;
+      padding: 10px 10px 6px;
+      width: 100%;
+
+      .long_short {
+        p {
+          text-align: left;
+          color: #f5f5f5;
+          margin: 0 0 10px 0;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          width: 100%;
+
+          &:nth-of-type(2) {
+            color: #ff621f;
+          }
+
+          span {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+
+      .clicks {
+        text-align: right;
+        color: #ff621f;
+        margin: 5px 0 0;
+        line-height: 25px;
+      }
     }
 
     margin: 10px auto;

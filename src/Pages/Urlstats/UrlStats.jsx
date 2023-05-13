@@ -1,19 +1,43 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-import StyledUrlStats from './StyledUrlStats';
-import UrlStatsGaurd from '../../components/AuthGuard/UrlStatsGaurd';
-import { Button } from '../../components/Atoms/Atoms';
+import { TbLink } from 'react-icons/tb';
+import { MdShortcut } from 'react-icons/md';
 
-function UrlStats({ visitors }) {
+import StyledUrlStats from './StyledUrlStats';
+import { Button } from '../../components/Atoms/Atoms';
+import UrlStatsGaurd from '../../components/AuthGuard/UrlStatsGaurd';
+import AuthGuard from '../../components/AuthGuard/AuthGuard';
+import { SHORT_BASE_URL } from '../../constant';
+
+function UrlStats({ visitors, url }) {
   return (
     <StyledUrlStats>
       <Button onClick={() => window.history.back()}>Back</Button>
 
       <div className="urlInfo">
-        <p className="clicks">
-          Total clicks {JSON.parse(sessionStorage.getItem('currentUrl')).clicks}
-        </p>
+        <div className="url_div">
+          <div className="long_short">
+            <p>
+              <TbLink /> <span>{url.long_url}</span>
+            </p>
+            <p>
+              <MdShortcut /> <span>{SHORT_BASE_URL + url.short_url}</span>
+            </p>
+          </div>
+          <p className="clicks">
+            <span>
+              Created On:{' '}
+              {`${new Date(url.createdAt).toDateString()} - ${new Date(
+                url.createdAt
+              ).toLocaleTimeString()}`}
+            </span>
+            <br />
+            <span>total visitors {visitors.length}</span> <br />
+            <span>Total clicks {url.clicks}</span>
+          </p>
+        </div>
+
         {visitors.length >= 1 ? (
           <table>
             <tr>
@@ -47,4 +71,4 @@ function UrlStats({ visitors }) {
   );
 }
 
-export default UrlStatsGaurd(UrlStats);
+export default AuthGuard(UrlStatsGaurd(UrlStats));

@@ -85,6 +85,7 @@ function UserPage({ currentUser, userUrls }) {
     localStorage.removeItem('token');
     sessionStorage.removeItem('userUrls');
     sessionStorage.removeItem('currentUrl');
+    sessionStorage.removeItem('uri');
     navigate('/', { replace: true });
     window.location.reload();
   };
@@ -95,8 +96,8 @@ function UserPage({ currentUser, userUrls }) {
     // window.location.reload(true);
   };
 
-  const viewUrlStats = (url) => {
-    sessionStorage.setItem('currentUrl', JSON.stringify(url));
+  const viewUrlStats = (urlId) => {
+    sessionStorage.setItem('uri', urlId);
     navigate('/stats');
   };
 
@@ -157,7 +158,7 @@ function UserPage({ currentUser, userUrls }) {
             <CardBottom>
               <ViewIcon
                 title="view url stats"
-                onClick={() => viewUrlStats(urldata)}
+                onClick={() => viewUrlStats(urldata.id || urldata.short_url)}
               />
               <UrlTxt $secondry>
                 created at {new Date(urldata.createdAt).toLocaleTimeString()}
