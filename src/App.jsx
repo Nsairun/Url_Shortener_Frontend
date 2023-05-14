@@ -44,7 +44,7 @@ function App() {
     }, 3000);
   };
 
-  const handleSubmit = async (e, UserId = null) => {
+  const handleSubmit = (e, UserId = null) => {
     e.preventDefault();
 
     const { target } = e;
@@ -75,8 +75,9 @@ function App() {
     registerUrl(data).then(() => {
       setUrls((prev) => [...prev, data]);
       saveToSession([data]);
-      target.long_url.value = '';
     });
+
+    target.long_url.value = '';
   };
 
   return (
