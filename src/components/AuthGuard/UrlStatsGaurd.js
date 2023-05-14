@@ -11,7 +11,6 @@ export default function UrlStatsGaurd(Component) {
       const uri = sessionStorage.getItem('uri');
 
       getUrlVisitors(uri).then(({ data: { visitors, url } }) => {
-        console.log('this is data', { visitors, url });
         setResponseData({ visitors, url });
       });
     }, []);
