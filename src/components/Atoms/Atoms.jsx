@@ -152,7 +152,7 @@ export const Heading2 = styled.h2`
   color: black;
   font-style: normal;
   @media only screen and (max-width: 768px) {
-    font-size: 18px;
+    font-size: 15px;
   }
 `;
 
