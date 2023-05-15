@@ -145,7 +145,7 @@ export const Join = styled.h1`
 `;
 
 export const Heading2 = styled.h2`
-  font-family: 'acumin-pro';
+  font-family: 'Roboto', sans-serif;
   font-eight: 600;
   font-size: 24px;
   font-lineheight: 15.6px;
@@ -299,6 +299,7 @@ export const Ptag = styled.p`
 
 export const Label = styled.label`
   color: #fff;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   @media only screen and (max-width: 768px) {
     font-size: 14px;
@@ -310,6 +311,7 @@ export const Label = styled.label`
 
 export const LinkPage = styled.a`
   text-decoration: underline;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
   font-style: italic;
   border: none;
