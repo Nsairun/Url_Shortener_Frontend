@@ -65,7 +65,8 @@ const DeleteForm = styled.div`
   flex-direction: column;
   align-items: center;
   height: 20vh;
-  width: 30vw;
+  width: 300px;
+  max-width: 90vw;
   border-radius: 5px;
   justify-content: space-evenly;
 
