@@ -147,7 +147,7 @@ export const Join = styled.h1`
 export const Heading2 = styled.h2`
   font-family: 'Roboto', sans-serif;
   font-eight: 600;
-  font-size: 24px;
+  font-size: 22px;
   font-lineheight: 15.6px;
   color: black;
   font-style: normal;
@@ -280,6 +280,7 @@ export const Ptag = styled.p`
     props.$tertiary &&
     css`
       color: black;
+      font-size: 15px;
       margin-bottom: 0;
     `};
   ${(props) =>
