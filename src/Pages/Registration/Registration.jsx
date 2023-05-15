@@ -38,6 +38,8 @@ const ErrorTag = styled.div`
   width: 100%;
   color: red;
   display: flex;
+  min-height: 100vh;
+  height: fit-content;
   align-items: center;
   justify-content: center;
 `;
