@@ -46,27 +46,28 @@ function App() {
 
   const handleSubmit = (e, UserId = null) => {
     e.preventDefault();
+    const formInput = e.target.long_url.value;
+    e.target.long_url.value = '';
 
-    const { target } = e;
-    if (target.long_url.value.length <= 0) {
+    if (formInput.length <= 0) {
       displayAlert('Please input a long url');
       return;
     }
 
-    const urlExist = existInSession(target.long_url.value);
+    const urlExist = existInSession(formInput);
 
     if (urlExist) {
       displayAlert('url already exist');
       return;
     }
 
-    if (!validUrl.isUri(target.long_url.value)) {
+    if (!validUrl.isUri(formInput)) {
       displayAlert(`NOT_A_VALID_URL`);
       return;
     }
 
     const data = {
-      long_url: target.long_url.value,
+      long_url: formInput,
       short_url: nanoId(),
       createdAt: new Date().toLocaleTimeString(),
       UserId,
@@ -76,8 +77,6 @@ function App() {
       setUrls((prev) => [...prev, data]);
       saveToSession([data]);
     });
-
-    target.long_url.value = '';
   };
 
   return (
