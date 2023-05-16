@@ -39,14 +39,16 @@ export const Form = styled.form`
 
 export const Footer = styled.div`
   display: flex;
-  margin-top: auto;
   padding: 12px 80px;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
   bottom: 0;
+  left: 0;
   justify-self: flex-end;
   width: 100vw;
   background-color: #1b1c2d70;
+
   @media only screen and (max-width: 768px) {
     padding: 8px 15px;
   }
@@ -57,13 +59,21 @@ export const MainHolder = styled.div`
 `;
 
 export const UrlHolder = styled.div`
-  width: 800px;
-  max-width: 70vw;
-  display: flex;
-  flex-wrap: wrap;
+  width: 90vw;
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   height: fit-content;
   gap: 20px;
+
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const PhraseHolder = styled.div`
