@@ -80,8 +80,8 @@ export const LongUrlField = styled.form`
 export const UrlCard = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70vw;
-  max-width: 250px;
+  width: 100%;
+  min-width: 200px;
   align-items: left;
   gap: 8px;
   text-align: left;
@@ -90,6 +90,11 @@ export const UrlCard = styled.div`
   background-color: #1b1c2d70;
   overflow: hidden;
   height: 90px;
+  margin: 2px auto;
+
+  @media only screen and (max-width: 768px) {
+    max-width: 250px;
+  }
 `;
 
 export const CardBottom = styled.div`

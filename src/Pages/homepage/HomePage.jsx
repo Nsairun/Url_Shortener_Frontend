@@ -46,6 +46,7 @@ const Home = styled.div`
   height: fit-content;
   width: 100vw;
   position: relative;
+  padding-bottom: 90px;
 `;
 
 function HomePage({ urls }) {

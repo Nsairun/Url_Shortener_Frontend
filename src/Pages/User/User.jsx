@@ -47,7 +47,9 @@ const User = styled.div`
   height: fit-content;
   width: 100vw;
   position: relative;
+  padding-bottom: 90px;
 `;
+
 const Deletebg = styled.div`
   display: flex;
   z-index: 1;
